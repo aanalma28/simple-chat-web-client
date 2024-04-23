@@ -3,8 +3,7 @@ const Icon = ({ name, size }) => {
     const icons = [
         {
             name_icon: 'chat',
-            el: <div>
-                <svg fill="#ccc" height={size} width={size} version="1.1" id="Capa_1" 
+            el: <svg fill="#ccc" height={size} width={size} version="1.1" id="Capa_1" 
                     xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" 
                     viewBox="0 0 60 60" xmlSpace="preserve" stroke="#ccc">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -12,13 +11,11 @@ const Icon = ({ name, size }) => {
                         <g id="SVGRepo_iconCarrier"> 
                             <path d="M30,1.5c-16.542,0-30,12.112-30,27c0,5.205,1.647,10.246,4.768,14.604c-0.591,6.537-2.175,11.39-4.475,13.689 c-0.304,0.304-0.38,0.769-0.188,1.153C0.276,58.289,0.625,58.5,1,58.5c0.046,0,0.093-0.003,0.14-0.01 c0.405-0.057,9.813-1.412,16.617-5.338C21.622,54.711,25.738,55.5,30,55.5c16.542,0,30-12.112,30-27S46.542,1.5,30,1.5z"></path> 
                         </g>
-                </svg>
-            </div>
+                </svg>            
         },
         {
             name_icon: 'contact',
-            el: <div>
-                <svg fill="#ccc" width={size} height={size} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" 
+            el: <svg fill="#ccc" width={size} height={size} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" 
                     xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 961.6 961.6" xmlSpace="preserve" 
                     stroke="#ccc">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -29,7 +26,6 @@ const Icon = ({ name, size }) => {
                             </g> 
                         </g>
                 </svg>
-            </div>
         }
     ]
 

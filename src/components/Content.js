@@ -1,10 +1,10 @@
 import styles from '../style/Content.module.css'
 
-const Content = () => {
+const Content = ({ children }) => {
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
-
+                {children}
             </div>
         </div>
     )
