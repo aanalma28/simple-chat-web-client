@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Signin from './pages/Signin'
 import Register from './pages/Register'
 import './App.css'
+import Mainview from './pages/Mainview';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route exact path="/" element={<Home />}/> 
         <Route path="/signin" element={<Signin />}/>
         <Route path="/register" element={<Register />}/>
+        <Route path="/main" element={<Mainview />}/>
       </Routes>
     </BrowserRouter>    
   );

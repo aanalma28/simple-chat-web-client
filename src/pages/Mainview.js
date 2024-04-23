@@ -1,7 +1,7 @@
 import styles from '../style/Mainview.module.css'
-import Sidebar from './Sidebar'
-import Content from './Content'
-import Chat from './Chat'
+import Sidebar from '../components/Sidebar'
+import Content from '../components/Content'
+import Chat from '../components/Chat'
 
 const Mainview = () => {
     return (
@@ -14,3 +14,5 @@ const Mainview = () => {
         </div>
     )
 }
+
+export default Mainview
