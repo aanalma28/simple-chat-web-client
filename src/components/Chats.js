@@ -1,11 +1,11 @@
 import Content from "./Content"
 
-const Contact = () => {
+const Chats = () => {
     return (
         <Content>
-            <h3>Contact</h3>
+            <h3>Chats</h3>
         </Content>
     )
 }
 
-export default Contact
+export default Chats
