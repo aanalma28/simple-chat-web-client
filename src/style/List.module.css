@@ -1,0 +1,77 @@
+.header{
+    padding: 10px 20px;
+}
+
+.headerText{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.headerText h3{
+    font-size: 20px;
+    color: #41B06E;
+    font-weight: 800;
+}
+
+.headerText p{
+    font-size: 15px;
+}
+
+.header form{
+    padding-top: 20px;
+}
+
+.header input{
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+    background-color: #f1f1f1;
+}
+
+.header input:focus{
+    outline: 1px solid #41B06E;
+    border: 2px solid #41B06E;
+}
+
+.mainContent{
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 70vh;
+    overflow-y: scroll;        
+    cursor: pointer;    
+}
+
+/* WebKit Scrollbar Styling */
+/* Track */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.mainList{    
+    flex-basis: 50%;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;        
+    padding: 10px 20px;
+}
+
+.mainList:hover{
+    background-color: #f1f1f1;
+}
+
+.mainList p{
+    text-align: center;
+}
