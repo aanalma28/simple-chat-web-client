@@ -1,4 +1,4 @@
-import styles from '../style/Chat.module.css'
+import styles from '../style/Messages.module.css'
 
 const Chat = () => {
     return (
