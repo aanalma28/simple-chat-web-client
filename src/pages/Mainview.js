@@ -10,9 +10,9 @@ import { useState, useEffect } from 'react'
 
 const Mainview = () => {
     const [content, setContent] = useState('')
-    const isDark = localStorage.getItem('darkMode')   
-
+    
     useEffect(() => {
+        const isDark = localStorage.getItem('darkMode')  
         const chat = document.getElementById('chat')
         const setting = document.getElementById('setting')
         const profile = document.getElementById('profile')
@@ -26,7 +26,8 @@ const Mainview = () => {
         }
 
         chat.addEventListener('click', () => {
-            if(isDark === 'disabled'){
+            console.log(isDark)            
+            if(isDark === 'disabled'){                                
                 chat.style.backgroundColor = '#ccc'                
                 setting.style.backgroundColor = '#f1f1f1'
                 profile.style.backgroundColor = '#f1f1f1'
@@ -36,7 +37,7 @@ const Mainview = () => {
                 setting.setAttribute('name', 'not-clicked')                
                 profile.setAttribute('name','not-clicked')     
                 contact.setAttribute('name', 'not-clicked')
-            }else{
+            }else if(isDark === 'enabled'){                
                 chat.style.backgroundColor = '#383838'                
                 setting.style.backgroundColor = '#1f1f1f'
                 profile.style.backgroundColor = '#1f1f1f'
@@ -61,7 +62,7 @@ const Mainview = () => {
                 setting.setAttribute('name', 'clicked')                
                 profile.setAttribute('name','not-clicked')     
                 contact.setAttribute('name', 'not-clicked')
-            }else{
+            }else if(isDark === 'enabled'){
                 chat.style.backgroundColor = '#1f1f1f'
                 setting.style.backgroundColor = '#383838'                
                 profile.style.backgroundColor = '#1f1f1f'
@@ -86,7 +87,7 @@ const Mainview = () => {
                 setting.setAttribute('name', 'not-clicked')                
                 profile.setAttribute('name','clicked')     
                 contact.setAttribute('name', 'not-clicked')        
-            }else{
+            }else if(isDark === 'enabled'){
                 chat.style.backgroundColor = '#1f1f1f'
                 setting.style.backgroundColor = '#1f1f1f'
                 profile.style.backgroundColor = '#383838'
@@ -111,7 +112,7 @@ const Mainview = () => {
                 setting.setAttribute('name', 'not-clicked')                
                 profile.setAttribute('name','not-clicked')     
                 contact.setAttribute('name', 'clicked')
-            }else{
+            }else if(isDark === 'enabled'){
                 chat.style.backgroundColor = '#1f1f1f'
                 setting.style.backgroundColor = '#1f1f1f'
                 profile.style.backgroundColor = '#1f1f1f'
