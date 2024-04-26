@@ -16,7 +16,7 @@ const Chats = () => {
                 </div>
             </div>
             <div className={styles.mainContainer}>
-                <div className={styles.mainList}>
+                <div id="list1" className={styles.mainList}>
                     <div className={styles.image}>
                         <Icon name="profile" size="50px"/>
                     </div>

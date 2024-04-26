@@ -15,7 +15,7 @@ const Mainview = () => {
         const chat = document.getElementById('chat')
         const setting = document.getElementById('setting')
         const profile = document.getElementById('profile')
-        const contact = document.getElementById('contact')
+        const contact = document.getElementById('contact')                       
 
         chat.addEventListener('click', () => {
             chat.style.backgroundColor = '#ccc'
