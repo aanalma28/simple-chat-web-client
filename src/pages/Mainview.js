@@ -10,39 +10,119 @@ import { useState, useEffect } from 'react'
 
 const Mainview = () => {
     const [content, setContent] = useState('')
+    const isDark = localStorage.getItem('darkMode')   
 
     useEffect(() => {
         const chat = document.getElementById('chat')
         const setting = document.getElementById('setting')
         const profile = document.getElementById('profile')
-        const contact = document.getElementById('contact')                       
+        const contact = document.getElementById('contact')
+        const containerSidebar = document.getElementById('container-sidebar')
+        
+        if(isDark === 'enabled'){
+            containerSidebar.style.backgroundColor = '#1f1f1f'                                      
+        }else{
+            containerSidebar.style.backgroundColor = '#f1f1f1'                
+        }
 
         chat.addEventListener('click', () => {
-            chat.style.backgroundColor = '#ccc'
-            setting.style.backgroundColor = '#f1f1f1'
-            profile.style.backgroundColor = '#f1f1f1'
-            contact.style.backgroundColor = '#f1f1f1'
+            if(isDark === 'disabled'){
+                chat.style.backgroundColor = '#ccc'                
+                setting.style.backgroundColor = '#f1f1f1'
+                profile.style.backgroundColor = '#f1f1f1'
+                contact.style.backgroundColor = '#f1f1f1'
+
+                chat.setAttribute('name', 'clicked')
+                setting.setAttribute('name', 'not-clicked')                
+                profile.setAttribute('name','not-clicked')     
+                contact.setAttribute('name', 'not-clicked')
+            }else{
+                chat.style.backgroundColor = '#383838'                
+                setting.style.backgroundColor = '#1f1f1f'
+                profile.style.backgroundColor = '#1f1f1f'
+                contact.style.backgroundColor = '#1f1f1f'
+
+                chat.setAttribute('name', 'clicked')
+                setting.setAttribute('name', 'not-clicked')                
+                profile.setAttribute('name','not-clicked')     
+                contact.setAttribute('name', 'not-clicked')
+            }
+            
         })
 
-        setting.addEventListener('click', () => {
-            chat.style.backgroundColor = '#f1f1f1'
-            setting.style.backgroundColor = '#ccc'
-            profile.style.backgroundColor = '#f1f1f1'
-            contact.style.backgroundColor = '#f1f1f1'
+        setting.addEventListener('click', () => {            
+            if(isDark === 'disabled'){
+                chat.style.backgroundColor = '#f1f1f1'
+                setting.style.backgroundColor = '#ccc'                
+                profile.style.backgroundColor = '#f1f1f1'
+                contact.style.backgroundColor = '#f1f1f1'
+
+                chat.setAttribute('name', 'not-clicked')
+                setting.setAttribute('name', 'clicked')                
+                profile.setAttribute('name','not-clicked')     
+                contact.setAttribute('name', 'not-clicked')
+            }else{
+                chat.style.backgroundColor = '#1f1f1f'
+                setting.style.backgroundColor = '#383838'                
+                profile.style.backgroundColor = '#1f1f1f'
+                contact.style.backgroundColor = '#1f1f1f'
+
+                chat.setAttribute('name', 'not-clicked')
+                setting.setAttribute('name', 'clicked')                
+                profile.setAttribute('name','not-clicked')     
+                contact.setAttribute('name', 'not-clicked')                        
+            }
+            
         })
 
         profile.addEventListener('click', () => {
-            chat.style.backgroundColor = '#f1f1f1'
-            setting.style.backgroundColor = '#f1f1f1'
-            profile.style.backgroundColor = '#ccc'
-            contact.style.backgroundColor = '#f1f1f1'
+            if(isDark === 'disabled'){
+                chat.style.backgroundColor = '#f1f1f1'
+                setting.style.backgroundColor = '#f1f1f1'
+                profile.style.backgroundColor = '#ccc'
+                contact.style.backgroundColor = '#f1f1f1'
+
+                chat.setAttribute('name', 'not-clicked')
+                setting.setAttribute('name', 'not-clicked')                
+                profile.setAttribute('name','clicked')     
+                contact.setAttribute('name', 'not-clicked')        
+            }else{
+                chat.style.backgroundColor = '#1f1f1f'
+                setting.style.backgroundColor = '#1f1f1f'
+                profile.style.backgroundColor = '#383838'
+                contact.style.backgroundColor = '#1f1f1f'
+
+                chat.setAttribute('name', 'not-clicked')
+                setting.setAttribute('name', 'not-clicked')                
+                profile.setAttribute('name','clicked')     
+                contact.setAttribute('name', 'not-clicked')           
+            }
+            
         })
 
         contact.addEventListener('click', () => {
-            chat.style.backgroundColor = '#f1f1f1'
-            setting.style.backgroundColor = '#f1f1f1'
-            profile.style.backgroundColor = '#f1f1f1'
-            contact.style.backgroundColor = '#ccc'
+            if(isDark === 'disabled'){
+                chat.style.backgroundColor = '#f1f1f1'
+                setting.style.backgroundColor = '#f1f1f1'
+                profile.style.backgroundColor = '#f1f1f1'
+                contact.style.backgroundColor = '#ccc'
+
+                chat.setAttribute('name', 'not-clicked')
+                setting.setAttribute('name', 'not-clicked')                
+                profile.setAttribute('name','not-clicked')     
+                contact.setAttribute('name', 'clicked')
+            }else{
+                chat.style.backgroundColor = '#1f1f1f'
+                setting.style.backgroundColor = '#1f1f1f'
+                profile.style.backgroundColor = '#1f1f1f'
+                contact.style.backgroundColor = '#383838'
+
+                chat.setAttribute('name', 'not-clicked')
+                setting.setAttribute('name', 'not-clicked')                
+                profile.setAttribute('name','not-clicked')     
+                contact.setAttribute('name', 'clicked')
+            }
+            
         })
     })
 
@@ -66,7 +146,7 @@ const Mainview = () => {
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
-                <div className={styles2.container}>
+                <div className={styles2.container} id="container-sidebar">
                     <div className={styles2.wrapper}>
                         <div className={styles2.topIcon}>
                             <div className={styles2.iconT} id="chat" onClick={handleChat}>

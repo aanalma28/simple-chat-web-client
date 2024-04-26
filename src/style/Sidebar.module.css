@@ -1,5 +1,6 @@
 .container{
     display: flex;
+    /* background-color: #1f1f1f; */
     background-color: #f1f1f1;
 }
 
@@ -30,7 +31,7 @@
     justify-content: center;
     cursor: pointer;    
     padding: 5px;    
-    border-radius: 10px;
+    border-radius: 10px;    
 }
 
 .iconB{
@@ -39,5 +40,5 @@
     justify-content: center;
     cursor: pointer;    
     padding: 3px;
-    border-radius: 10px;
+    border-radius: 10px;    
 }

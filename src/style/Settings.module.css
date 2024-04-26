@@ -1,0 +1,71 @@
+.header{
+    padding: 10px 20px;
+}
+
+.header h3{
+    font-size: 20px;
+    color: #41B06E;
+    font-weight: 800;
+}
+
+.mainContent{
+    padding: 10px 20px;    
+}
+
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content h3{
+    font-size: 15px;
+    font-weight: light;
+}
+
+.btnWrapper{
+    display: flex;    
+}
+
+.longCircle{    
+    width: 30px;
+    height: 10px;
+    border-radius: 50px;
+    background-color: #ccc;
+    z-index: 0;
+}
+
+.longCircleDark{
+    width: 30px;
+    height: 10px;
+    border-radius: 50px;
+    background-color: #41B06E;
+    z-index: 0;
+}
+
+.circle{    
+    z-index: 1;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background-color: white;
+    transform: translate(0, -2px);
+    cursor: pointer;
+    transition: all 0.2 ease-in-out;
+}
+
+.circleDark{    
+    z-index: 1;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid #41B06E;
+    background-color: white;
+    transform: translate(18px, -2px);
+    cursor: pointer;
+    transition: all 0.2 ease-in-out;
+}
+
