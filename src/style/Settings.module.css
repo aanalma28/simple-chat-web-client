@@ -43,13 +43,14 @@
     z-index: 0;
 }
 
-.circle{    
+.circle{
+    z-index: 1;   
     width: 15px;
     height: 15px;
     border-radius: 50%;
     border: 1px solid #ccc;
     background-color: white;
-    transform: translate(0, -2px);
+    transform: translate(15px, -2px);
     cursor: pointer;
     transition: all 0.2 ease-in-out;
 }

@@ -2,27 +2,28 @@ import Content from "./Content"
 import styles from '../style/Settings.module.css'
 import { useEffect } from "react"
 
+
 const Contact = () => {
     const isDark = localStorage.getItem('darkMode')
-
     useEffect(() => {
         const containerSidebar = document.getElementById('container-sidebar')
         const chat = document.getElementById('chat')
         const setting = document.getElementById('setting')
         const profile = document.getElementById('profile')
         const contact = document.getElementById('contact')
-
-        let count = 0
+        
+        let number = parseInt(localStorage.getItem('number')) || 0
         const circle = document.getElementById('circle')
         const longCircle = document.getElementById('long-circle')
-        circle.addEventListener('click', (e) => {
-            e.preventDefault()
-            if(count % 2 === 0) {                
-                circle.style.transform = 'translate(18px, -2px)'
+        circle.addEventListener('click', (e) => {            
+            e.preventDefault()            
+            if(number % 2 === 0) {
+                circle.style.transform = isDark === 'disabled' ? 'translate(30px, -2px)' : 'translate(15px, -2px)'
                 circle.style.border = '1px solid #41B06E'
                 longCircle.style.backgroundColor = '#41B06E'
-                localStorage.setItem("darkMode", "enabled")
+                localStorage.setItem("darkMode", "enabled")                
                 containerSidebar.style.backgroundColor = '#1f1f1f'
+                containerSidebar.setAttribute('name', 'dark')
 
                 if(chat.getAttribute('name') === 'clicked'){
                     chat.style.backgroundColor = '#383838'                
@@ -60,13 +61,15 @@ const Contact = () => {
                     contact.style.backgroundColor = '#1f1f1f'
                 }
 
-                count+=1
+                number+=1
+                localStorage.setItem('number', number.toString())               
             }else{                
-                circle.style.transform = 'translate(0, -2px)'                
+                circle.style.transform = isDark === 'disabled' ? 'translate(15px, -2px)' : 'translate(0px, -2px)'
                 circle.style.border = '1px solid #ccc'
                 longCircle.style.backgroundColor = '#ccc'
                 localStorage.setItem("darkMode", "disabled")
                 containerSidebar.style.backgroundColor = '#f1f1f1'
+                containerSidebar.setAttribute('name', 'light')
 
                 if(chat.getAttribute( 'name' ) === 'clicked'){
                     chat.style.backgroundColor = '#ccc'               
@@ -104,7 +107,8 @@ const Contact = () => {
                     contact.style.backgroundColor = '#f1f1f1'               
                 }
                 
-                count+=1
+                number+=1
+                localStorage.setItem('number', number.toString())           
             }
         })
     })
