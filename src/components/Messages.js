@@ -1,7 +1,11 @@
 import styles from '../style/Messages.module.css'
 import Icon from './Icon'
 
-const Chat = () => {    
+const Chat = () => {
+
+    const handleSubmit = () => {
+        console.log("submitted")
+    }
 
     return (
         <div className={styles.container}>
@@ -19,7 +23,10 @@ const Chat = () => {
 
                 </div>
                 <div className={styles.footer}>
-                    
+                    <form className={styles.form} onSubmit={handleSubmit}>
+                        <input type="text" name="message" placeholder='Type message here' required/>
+                        <button type="submit">Send</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -25,8 +25,7 @@
 }
 
 .header input:focus{
-    outline: 1px solid #41B06E;
-    border: 2px solid #41B06E;
+    outline: 2px solid #41B06E;    
 }
 
 .mainContainer{

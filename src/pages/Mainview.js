@@ -153,18 +153,8 @@ const Mainview = () => {
         setContent('profile')
     }
 
-    const handleTest = async () => {
-        const res = await fetch('http://localhost:3030/hello', {
-            method: 'GET'
-        })
-
-        const json = await res.json()
-        console.log(json)
-    }
-
     return (        
-        <div className={styles.container}>
-            <button onClick={handleTest}>click</button>
+        <div className={styles.container}>            
             <div className={styles.wrapper}>
                 <div className={styles2.container} id="container-sidebar">
                     <div className={styles2.wrapper}>
