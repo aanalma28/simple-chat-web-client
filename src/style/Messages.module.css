@@ -19,6 +19,10 @@
     background-color: #f1f1f1;
 }
 
+.header h3{
+    font-size: medium;
+}
+
 .info{        
     display: flex;
     gap: 10px;

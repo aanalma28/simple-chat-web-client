@@ -29,8 +29,9 @@
     border-radius: 10px;
     padding: 15px 10px;
     max-width: 100%;
-    min-height: 50px;
     min-width: fit-content;
+    min-height: 50px;
+    max-height: 25vh;
 }
 
 .input:focus{
