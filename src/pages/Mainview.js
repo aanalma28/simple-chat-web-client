@@ -7,12 +7,18 @@ import Settings from '../components/Settings'
 import styles2 from '../style/Sidebar.module.css'
 import Profile from '../components/Profile'
 import { useState, useEffect } from 'react'
+// import { io } from 'socket.io-client'
 
 
 const Mainview = () => {
-    const [content, setContent] = useState('')    
+    const [content, setContent] = useState('')
+    // const socket = io('http://localhost:3030')
     
-    useEffect(() => {
+    // socket.on('connect', () => {
+    //     console.log('Connected to server')
+    // })
+    
+    useEffect(() => {        
         const chat = document.getElementById('chat')
         const setting = document.getElementById('setting')
         const profile = document.getElementById('profile')
@@ -147,8 +153,18 @@ const Mainview = () => {
         setContent('profile')
     }
 
-    return (
+    const handleTest = async () => {
+        const res = await fetch('http://localhost:3030/hello', {
+            method: 'GET'
+        })
+
+        const json = await res.json()
+        console.log(json)
+    }
+
+    return (        
         <div className={styles.container}>
+            <button onClick={handleTest}>click</button>
             <div className={styles.wrapper}>
                 <div className={styles2.container} id="container-sidebar">
                     <div className={styles2.wrapper}>
