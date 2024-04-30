@@ -31,7 +31,8 @@
 
 .main{
     width: 100%;
-    height: 80%;
+    height: 80%;    
+    background-color: #ccc;
 }
 
 .footer{
@@ -72,5 +73,5 @@
     font-size: 13px;
     color: #fff;
     border-radius: 10px;
-    cursor: pointer;
+    cursor: pointer;  
 }

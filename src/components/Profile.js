@@ -13,9 +13,9 @@ const Contact = () => {
                     <Icon name="profile" size="150px"/>                
                 </div>
                 <form onSubmit="" className={styles.form}>
-                    <input className={styles.input} type="text" name="username" placeholder="Username"></input>
-                    <input className={styles.input} type="text" name="hobby" placeholder="Hobby"></input>
-                    <textarea className={styles.input} type="" name="hobby" placeholder="Hobby"></textarea>
+                    <input id="input" className={styles.input} type="text" name="username" placeholder="Username"></input>
+                    <input id="input" className={styles.input} type="text" name="hobby" placeholder="Hobby"></input>
+                    <textarea id="input" className={styles.input} type="" name="description" placeholder="Description"></textarea>
                     <button type="submit" className={styles.btn}>Edit</button>
                 </form>
             </div>

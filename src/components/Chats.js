@@ -11,110 +11,110 @@ const Chats = () => {
                 </div>
                 <div className={styles.content2}>
                     <form>
-                        <input type="text" placeholder="Search"/>
+                        <input type="text" placeholder="Search" id="input"/>
                     </form>
                 </div>
             </div>
             <div className={styles.mainContainer}>
-                <div id="list1" className={styles.mainList}>
+                <div id="list" className={styles.mainList}>
                     <div className={styles.image}>
                         <Icon name="profile" size="50px"/>
                     </div>
                     <div className={styles.text}>
-                        <h3>Name</h3>
-                        <p>Message here...</p>
+                        <h3 id="text">Name</h3>
+                        <p id="text">Message here...</p>
                     </div>
-                </div>
-                <div className={styles.mainList}>
+                </div>                                
+                <div id="list" className={styles.mainList}>
                     <div className={styles.image}>
                         <Icon name="profile" size="50px"/>
                     </div>
                     <div className={styles.text}>
-                        <h3>Name</h3>
-                        <p>Message here...</p>
+                        <h3 id="text">Name</h3>
+                        <p id="text">Message here...</p>
                     </div>
-                </div>
-                <div className={styles.mainList}>
+                </div>                                
+                <div id="list" className={styles.mainList}>
                     <div className={styles.image}>
                         <Icon name="profile" size="50px"/>
                     </div>
                     <div className={styles.text}>
-                        <h3>Name</h3>
-                        <p>Message here...</p>
+                        <h3 id="text">Name</h3>
+                        <p id="text">Message here...</p>
                     </div>
-                </div>
-                <div className={styles.mainList}>
+                </div>                                
+                <div id="list" className={styles.mainList}>
                     <div className={styles.image}>
                         <Icon name="profile" size="50px"/>
                     </div>
                     <div className={styles.text}>
-                        <h3>Name</h3>
-                        <p>Message here...</p>
+                        <h3 id="text">Name</h3>
+                        <p id="text">Message here...</p>
                     </div>
-                </div>
-                <div className={styles.mainList}>
+                </div>                                
+                <div id="list" className={styles.mainList}>
                     <div className={styles.image}>
                         <Icon name="profile" size="50px"/>
                     </div>
                     <div className={styles.text}>
-                        <h3>Name</h3>
-                        <p>Message here...</p>
+                        <h3 id="text">Name</h3>
+                        <p id="text">Message here...</p>
                     </div>
-                </div>
-                <div className={styles.mainList}>
+                </div>                                
+                <div id="list" className={styles.mainList}>
                     <div className={styles.image}>
                         <Icon name="profile" size="50px"/>
                     </div>
                     <div className={styles.text}>
-                        <h3>Name</h3>
-                        <p>Message here...</p>
+                        <h3 id="text">Name</h3>
+                        <p id="text">Message here...</p>
                     </div>
-                </div>
-                <div className={styles.mainList}>
+                </div>                                
+                <div id="list" className={styles.mainList}>
                     <div className={styles.image}>
                         <Icon name="profile" size="50px"/>
                     </div>
                     <div className={styles.text}>
-                        <h3>Name</h3>
-                        <p>Message here...</p>
+                        <h3 id="text">Name</h3>
+                        <p id="text">Message here...</p>
                     </div>
-                </div>
-                <div className={styles.mainList}>
+                </div>                                
+                <div id="list" className={styles.mainList}>
                     <div className={styles.image}>
                         <Icon name="profile" size="50px"/>
                     </div>
                     <div className={styles.text}>
-                        <h3>Name</h3>
-                        <p>Message here...</p>
+                        <h3 id="text">Name</h3>
+                        <p id="text">Message here...</p>
                     </div>
-                </div>
-                <div className={styles.mainList}>
+                </div>                                
+                <div id="list" className={styles.mainList}>
                     <div className={styles.image}>
                         <Icon name="profile" size="50px"/>
                     </div>
                     <div className={styles.text}>
-                        <h3>Name</h3>
-                        <p>Message here...</p>
+                        <h3 id="text">Name</h3>
+                        <p id="text">Message here...</p>
                     </div>
-                </div>
-                <div className={styles.mainList}>
+                </div>                                
+                <div id="list" className={styles.mainList}>
                     <div className={styles.image}>
                         <Icon name="profile" size="50px"/>
                     </div>
                     <div className={styles.text}>
-                        <h3>Name</h3>
-                        <p>Message here...</p>
+                        <h3 id="text">Name</h3>
+                        <p id="text">Message here...</p>
                     </div>
-                </div>
-                <div className={styles.mainList}>
+                </div>                                
+                <div id="list" className={styles.mainList}>
                     <div className={styles.image}>
                         <Icon name="profile" size="50px"/>
                     </div>
                     <div className={styles.text}>
-                        <h3>Name</h3>
-                        <p>Message here...</p>
+                        <h3 id="text">Name</h3>
+                        <p id="text">Message here...</p>
                     </div>
-                </div>
+                </div>                                
             </div>
         </Content>
     )

@@ -27,10 +27,80 @@ const Mainview = () => {
         const isDark = containerSidebar.getAttribute('name')
         const isDarkSidebar = localStorage.getItem('darkMode')
         
+        const content = document.getElementById('content')
+        const text = document.querySelectorAll('#text')
+        const mainlist = document.querySelectorAll('#mainlist')
+        const lists = document.querySelectorAll('#list')
+        const inputs = document.querySelectorAll('#input')
+
+        const msgHeader = document.getElementById('message-header')
+        const msgMain = document.getElementById('message-main')
+        const msgFooter = document.getElementById('message-footer')
+        
         if(isDarkSidebar === 'enabled'){
             containerSidebar.style.backgroundColor = '#1f1f1f'                                      
+            content.style.backgroundColor = '#141414'
+            content.style.border = '1px solid #3d3d3d'
+            text.forEach((txt) => {
+                txt.style.color = 'whitesmoke'
+            })
+            mainlist.forEach((list) => {
+                list.addEventListener('mouseenter', () => {
+                    list.style.backgroundColor = '#3d3d3d'
+                })
+                list.addEventListener('mouseleave', () => {
+                    list.style.backgroundColor = '#141414'
+                })
+            })
+
+            lists.forEach((list) => {
+                list.addEventListener('mouseenter', () => {
+                    list.style.backgroundColor = '#3d3d3d'
+                })
+                list.addEventListener('mouseleave', () => {
+                    list.style.backgroundColor = '#141414'
+                })
+                list.style.borderBottom = '1px solid #3d3d3d'
+            })
+
+            
+            inputs.forEach((input) => {
+                input.style.backgroundColor = '#3d3d3d'
+                input.style.border = '1px solid #3d3d3d'
+            })
+
+            msgHeader.style.backgroundColor = '#1f1f1f'
+            msgMain.style.backgroundColor ='#0c0c0c'
+            msgFooter.style.backgroundColor = '#1f1f1f'
         }else{
             containerSidebar.style.backgroundColor = '#f1f1f1'                
+            content.style.backgroundColor = 'white'
+            content.style.border = '1px solid #ccc'
+            text.forEach((txt) => {
+                txt.style.color = 'black'
+            })
+            mainlist.forEach((list) => {
+                list.addEventListener('mouseenter', () => {
+                    list.style.backgroundColor = '#f1f1f1'
+                })
+                list.addEventListener('mouseleave', () => {
+                    list.style.backgroundColor = 'white'
+                })
+            })
+
+            lists.forEach((list) => {
+                list.addEventListener('mouseenter', () => {
+                    list.style.backgroundColor = '#f1f1f1'
+                })
+                list.addEventListener('mouseleave', () => {
+                    list.style.backgroundColor = 'white'
+                })
+                list.style.borderBottom = '1px solid #f1f1f1'
+            })
+
+            msgHeader.style.backgroundColor = '#f1f1f1'
+            msgMain.style.backgroundColor ='#ccc'
+            msgFooter.style.backgroundColor = '#f1f1f1'
         }
 
         chat.addEventListener('click', () => {
@@ -58,6 +128,10 @@ const Mainview = () => {
                 contact.setAttribute('name', 'not-clicked')
             }
             
+            inputs.forEach((input) => {
+                input.style.backgroundColor = '#f1f1f1'
+                input.style.border = '1px solid #f1f1f1'
+            })
         })
 
         setting.addEventListener('click', () => {            

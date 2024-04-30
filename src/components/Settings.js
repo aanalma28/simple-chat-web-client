@@ -12,6 +12,15 @@ const Contact = () => {
         const profile = document.getElementById('profile')
         const contact = document.getElementById('contact')
         
+        const content = document.getElementById("content")
+        const text = document.querySelectorAll('#text')
+
+        const msgHeader = document.getElementById('message-header')
+        const msgMain = document.getElementById('message-main')
+        const msgFooter = document.getElementById('message-footer')
+
+        const inputs = document.querySelectorAll('#input')
+        
         let number = parseInt(localStorage.getItem('number')) || 0
         const circle = document.getElementById('circle')
         const longCircle = document.getElementById('long-circle')
@@ -24,6 +33,22 @@ const Contact = () => {
                 localStorage.setItem("darkMode", "enabled")                
                 containerSidebar.style.backgroundColor = '#1f1f1f'
                 containerSidebar.setAttribute('name', 'dark')
+
+                content.style.backgroundColor = '#141414'
+                content.style.border = '1px solid #3d3d3d'
+                text.forEach((txt) => {
+                    txt.style.color = "whitesmoke"
+                })
+
+                msgHeader.style.backgroundColor = '#1f1f1f'
+                msgMain.style.backgroundColor ='#0c0c0c'
+                msgFooter.style.backgroundColor = '#1f1f1f'
+
+                inputs.forEach((input) => {
+                    input.style.backgroundColor = '#3d3d3d'
+                    input.style.border = '1px solid #3d3d3d'
+                    input.style.color = 'white'
+                })
 
                 if(chat.getAttribute('name') === 'clicked'){
                     chat.style.backgroundColor = '#383838'                
@@ -70,6 +95,22 @@ const Contact = () => {
                 localStorage.setItem("darkMode", "disabled")
                 containerSidebar.style.backgroundColor = '#f1f1f1'
                 containerSidebar.setAttribute('name', 'light')
+
+                content.style.backgroundColor = 'white'
+                content.style.border = '1px solid #ccc'
+                text.forEach((txt) => {
+                    txt.style.color = 'black'
+                })
+
+                msgHeader.style.backgroundColor = '#f1f1f1'
+                msgMain.style.backgroundColor ='#ccc'
+                msgFooter.style.backgroundColor = '#f1f1f1'
+
+                inputs.forEach((input) => {
+                    input.style.backgroundColor = 'white'
+                    input.style.border = '2px solid white'
+                    input.style.color = 'black'
+                })
 
                 if(chat.getAttribute( 'name' ) === 'clicked'){
                     chat.style.backgroundColor = '#ccc'               
@@ -120,7 +161,7 @@ const Contact = () => {
             </div>
             <div className={styles.mainContent}>
                 <div className={styles.content}>
-                    <h3>Dark Mode</h3>
+                    <h3 id="text">Dark Mode</h3>
                     <div className={styles.btnWrapper}>
                         <div className={isDark === 'disabled' ? styles.circle : styles.circleDark} id="circle"></div>
                         <div className={isDark === 'disabled' ? styles.longCircle : styles.longCircleDark} id="long-circle"></div>
