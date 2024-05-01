@@ -24,7 +24,7 @@ const Chat = () => {
                 </div>
                 <div className={styles.footer} id="message-footer">
                     <form className={styles.form} onSubmit={handleSubmit}>
-                        <input id="input" type="text" name="message" placeholder='Type message here' required/>
+                        <input id="input-message" type="text" name="message" placeholder='Type message here' required/>
                         <button type="submit">Send</button>
                     </form>
                 </div>

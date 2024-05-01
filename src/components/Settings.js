@@ -20,6 +20,7 @@ const Contact = () => {
         const msgFooter = document.getElementById('message-footer')
 
         const inputs = document.querySelectorAll('#input')
+        const inputMsg = document.getElementById('input-message')
         
         let number = parseInt(localStorage.getItem('number')) || 0
         const circle = document.getElementById('circle')
@@ -40,14 +41,20 @@ const Contact = () => {
                     txt.style.color = "whitesmoke"
                 })
 
+                inputMsg.style.backgroundColor = '#3d3d3d'
+                inputMsg.style.border = '1px solid #3d3d3d'
+                
+                inputMsg.addEventListener('focus', () => {
+                    inputMsg.style.color = 'white'
+                })
+
                 msgHeader.style.backgroundColor = '#1f1f1f'
                 msgMain.style.backgroundColor ='#0c0c0c'
                 msgFooter.style.backgroundColor = '#1f1f1f'
 
                 inputs.forEach((input) => {
                     input.style.backgroundColor = '#3d3d3d'
-                    input.style.border = '1px solid #3d3d3d'
-                    input.style.color = 'white'
+                    input.style.border = '1px solid #3d3d3d'                    
                 })
 
                 if(chat.getAttribute('name') === 'clicked'){
@@ -102,14 +109,19 @@ const Contact = () => {
                     txt.style.color = 'black'
                 })
 
+                inputMsg.style.backgroundColor = 'white'
+                inputMsg.style.border = '1px solid white'
+                inputMsg.addEventListener('focus', () => {
+                    inputMsg.style.color = 'white'
+                })
+
                 msgHeader.style.backgroundColor = '#f1f1f1'
                 msgMain.style.backgroundColor ='#ccc'
                 msgFooter.style.backgroundColor = '#f1f1f1'
 
                 inputs.forEach((input) => {
                     input.style.backgroundColor = 'white'
-                    input.style.border = '2px solid white'
-                    input.style.color = 'black'
+                    input.style.border = '2px solid white'                    
                 })
 
                 if(chat.getAttribute( 'name' ) === 'clicked'){

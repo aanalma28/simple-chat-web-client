@@ -32,6 +32,7 @@ const Mainview = () => {
         const mainlist = document.querySelectorAll('#mainlist')
         const lists = document.querySelectorAll('#list')
         const inputs = document.querySelectorAll('#input')
+        const inputMsg = document.getElementById('input-message')
 
         const msgHeader = document.getElementById('message-header')
         const msgMain = document.getElementById('message-main')
@@ -67,7 +68,14 @@ const Mainview = () => {
             inputs.forEach((input) => {
                 input.style.backgroundColor = '#3d3d3d'
                 input.style.border = '1px solid #3d3d3d'
+                input.addEventListener('focus', () => {
+                    input.style.color = 'white'                    
+                })
             })
+
+            inputMsg.style.backgroundColor = '#3d3d3d'
+            inputMsg.style.border = '1px solid #3d3d3d'
+            inputMsg.style.color = 'white'
 
             msgHeader.style.backgroundColor = '#1f1f1f'
             msgMain.style.backgroundColor ='#0c0c0c'
@@ -98,6 +106,18 @@ const Mainview = () => {
                 list.style.borderBottom = '1px solid #f1f1f1'
             })
 
+            inputs.forEach((input) => {
+                input.style.backgroundColor = '#f1f1f1'
+                input.style.border = '1px solid #f1f1f1'
+                input.addEventListener('focus', () => {
+                    input.style.color = 'black'
+                })
+            })
+
+            inputMsg.style.backgroundColor = 'white'
+            inputMsg.style.border = '1px solid white'
+            inputMsg.style.color = 'black'
+
             msgHeader.style.backgroundColor = '#f1f1f1'
             msgMain.style.backgroundColor ='#ccc'
             msgFooter.style.backgroundColor = '#f1f1f1'
@@ -116,6 +136,7 @@ const Mainview = () => {
                 setting.setAttribute('name', 'not-clicked')                
                 profile.setAttribute('name','not-clicked')     
                 contact.setAttribute('name', 'not-clicked')
+                
             }else if(isDark === 'dark' || isDarkSidebar === 'enabled'){                
                 chat.style.backgroundColor = '#383838'                
                 setting.style.backgroundColor = '#1f1f1f'
@@ -125,13 +146,9 @@ const Mainview = () => {
                 chat.setAttribute('name', 'clicked')
                 setting.setAttribute('name', 'not-clicked')                
                 profile.setAttribute('name','not-clicked')     
-                contact.setAttribute('name', 'not-clicked')
+                contact.setAttribute('name', 'not-clicked')                
             }
             
-            inputs.forEach((input) => {
-                input.style.backgroundColor = '#f1f1f1'
-                input.style.border = '1px solid #f1f1f1'
-            })
         })
 
         setting.addEventListener('click', () => {            
@@ -145,6 +162,7 @@ const Mainview = () => {
                 setting.setAttribute('name', 'clicked')                
                 profile.setAttribute('name','not-clicked')     
                 contact.setAttribute('name', 'not-clicked')
+                
             }else if(isDark === 'dark' || isDarkSidebar === 'enabled'){
                 chat.style.backgroundColor = '#1f1f1f'
                 setting.style.backgroundColor = '#383838'                
@@ -154,7 +172,8 @@ const Mainview = () => {
                 chat.setAttribute('name', 'not-clicked')
                 setting.setAttribute('name', 'clicked')                
                 profile.setAttribute('name','not-clicked')     
-                contact.setAttribute('name', 'not-clicked')                        
+                contact.setAttribute('name', 'not-clicked')    
+                                
             }
             
         })
@@ -169,7 +188,8 @@ const Mainview = () => {
                 chat.setAttribute('name', 'not-clicked')
                 setting.setAttribute('name', 'not-clicked')                
                 profile.setAttribute('name','clicked')     
-                contact.setAttribute('name', 'not-clicked')        
+                contact.setAttribute('name', 'not-clicked')
+                                
             }else if(isDark === 'dark' || isDarkSidebar === 'enabled'){
                 chat.style.backgroundColor = '#1f1f1f'
                 setting.style.backgroundColor = '#1f1f1f'
@@ -180,6 +200,7 @@ const Mainview = () => {
                 setting.setAttribute('name', 'not-clicked')                
                 profile.setAttribute('name','clicked')     
                 contact.setAttribute('name', 'not-clicked')           
+                
             }
             
         })
@@ -195,7 +216,8 @@ const Mainview = () => {
                 setting.setAttribute('name', 'not-clicked')                
                 profile.setAttribute('name','not-clicked')     
                 contact.setAttribute('name', 'clicked')
-            }else if(isDark === 'dark' || isDarkSidebar === 'enabled'){
+                
+            }else{
                 chat.style.backgroundColor = '#1f1f1f'
                 setting.style.backgroundColor = '#1f1f1f'
                 profile.style.backgroundColor = '#1f1f1f'
@@ -205,6 +227,7 @@ const Mainview = () => {
                 setting.setAttribute('name', 'not-clicked')                
                 profile.setAttribute('name','not-clicked')     
                 contact.setAttribute('name', 'clicked')
+                
             }
             
         })
