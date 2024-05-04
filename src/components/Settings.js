@@ -112,7 +112,7 @@ const Contact = () => {
                 inputMsg.style.backgroundColor = 'white'
                 inputMsg.style.border = '1px solid white'
                 inputMsg.addEventListener('focus', () => {
-                    inputMsg.style.color = 'white'
+                    inputMsg.style.color = 'black'
                 })
 
                 msgHeader.style.backgroundColor = '#f1f1f1'

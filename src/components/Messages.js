@@ -1,10 +1,17 @@
 import styles from '../style/Messages.module.css'
 import Icon from './Icon'
+import { io } from 'socket.io-client'
 
-const Chat = () => {
+const Chat = () => {    
+    const socket = io('http://localhost:3030')
+    
+    socket.on('connect', () => {
+        console.log('Connected to server')
+    })    
 
-    const handleSubmit = () => {
-        console.log("submitted")
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        socket.emmit('chat', e.target.value)
     }
 
     return (
