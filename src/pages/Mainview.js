@@ -7,16 +7,11 @@ import Settings from '../components/Settings'
 import styles2 from '../style/Sidebar.module.css'
 import Profile from '../components/Profile'
 import { useState, useEffect } from 'react'
-import { io } from 'socket.io-client'
+
 
 
 const Mainview = () => {
-    const [content, setContent] = useState('')
-    const socket = io('http://localhost:3030')
-    
-    socket.on('connect', () => {
-        console.log('Connected to server')
-    })
+    const [content, setContent] = useState('')    
     
     useEffect(() => {        
         const chat = document.getElementById('chat')

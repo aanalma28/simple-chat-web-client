@@ -74,3 +74,53 @@
 .mainList p{
     text-align: center;
 }
+
+.seeProfile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    padding: 0 20px;
+}
+
+.seeProfile p{
+    font-size: 20px;
+    font-weight: bold;    
+}
+
+.desc{
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    line-height: 1.7;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn button{
+    padding: 8px 30px;
+    border-radius: 10px;
+    border: none;
+}
+
+.back{
+    cursor: pointer;
+    background-color: #E72929;
+    color: white;
+    font-weight: bold;
+}
+
+.add{
+    cursor: pointer;
+    background-color: #41B06E;
+    color: white;
+    font-weight: bold;
+}

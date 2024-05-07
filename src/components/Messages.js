@@ -1,17 +1,20 @@
 import styles from '../style/Messages.module.css'
 import Icon from './Icon'
 import { io } from 'socket.io-client'
+import { useState } from 'react'
 
 const Chat = () => {    
-    const socket = io('http://localhost:3030')
-    
+    const socket = io('http://localhost:3030')    
+    const [msg, setMsg] = useState()    
+
     socket.on('connect', () => {
         console.log('Connected to server')
     })    
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        socket.emmit('chat', e.target.value)
+        e.preventDefault()        
+        socket.emit('chat', msg)
+        setMsg('')
     }
 
     return (
@@ -31,7 +34,7 @@ const Chat = () => {
                 </div>
                 <div className={styles.footer} id="message-footer">
                     <form className={styles.form} onSubmit={handleSubmit}>
-                        <input id="input-message" type="text" name="message" placeholder='Type message here' required/>
+                        <input value={msg} onChange={(e) => setMsg(e.target.value)} id="input-message" type="text" name="message" placeholder='Type message here' required/>
                         <button type="submit">Send</button>
                     </form>
                 </div>
