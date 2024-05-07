@@ -1,10 +1,64 @@
 import Content from "./Content"
 import styles from '../style/List.module.css'
 import Icon from "./Icon"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const Contact = () => {
+    const isDark = localStorage.getItem('darkMode')
     const [isClick, setIsClick] = useState(false)
+
+    useEffect(() => {
+        const text = document.querySelectorAll('#text')
+        const mainList = document.querySelectorAll('#mainlist')
+        const inputSearch = document.getElementById('input')
+
+        if(isDark === 'enabled'){
+            text.forEach((txt) => {
+                txt.style.color = 'white'
+            })
+
+            mainList.forEach((list) => {
+                list.addEventListener('mouseenter', () => {
+                    list.style.backgroundColor = '#3d3d3d'
+                })
+                list.addEventListener('mouseleave', () => {
+                    list.style.backgroundColor = '#141414'
+                })
+            })
+
+            if(isClick !== true){
+                inputSearch.style.border = '1px solid #3d3d3d'
+                inputSearch.style.backgroundColor = '#3d3d3d'
+                inputSearch.addEventListener('focus', () => {
+                    inputSearch.style.color = 'white'                    
+                })
+            }
+
+        }else{
+            text.forEach((txt) => {
+                txt.style.color = 'black'
+            })
+
+            mainList.forEach((list) => {
+                list.addEventListener('mouseenter', () => {
+                    list.style.backgroundColor = '#f1f1f1'
+                })
+                list.addEventListener('mouseleave', () => {
+                    list.style.backgroundColor = 'white'
+                })
+            })
+
+            if(isClick !== true){
+                inputSearch.style.border = '1px solid #f1f1f1'
+                inputSearch.style.backgroundColor = '#f1f1f1'
+                inputSearch.addEventListener('focus', () => {
+                    inputSearch.style.color = 'black'
+                })
+            }
+
+        }
+    })
+    
     const handleClick = () => {
         setIsClick(true)
     }
