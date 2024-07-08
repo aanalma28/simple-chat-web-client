@@ -1,5 +1,7 @@
 import styles from '../style/Register.module.css'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 const Signin = () => {
     useEffect(() => {
@@ -11,8 +13,7 @@ const Signin = () => {
 
         if(darkMode === 'enabled'){
             container.style.backgroundColor = '#1f1f1f'
-            wrapper.style.backgroundColor = '#383838'
-            wrapper.style.boxShadow = '0px 0px 50px rgba(170, 170, 170, 0.1)'      
+            wrapper.style.backgroundColor = '#383838'            
             text.style.color = 'white'
             inputs.forEach((input) => {
                 input.style.backgroundColor = '#303030'
@@ -31,9 +32,29 @@ const Signin = () => {
         }
     })
 
-    const handleSubmit = (e) => {
+    const [data, setData] = useState({
+        email: '',
+        password: ''
+    })
+
+    const navigate = useNavigate()
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log("Hello")
+        
+        const res = await fetch('http://localhost:3030/signin', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        })
+
+        const json = await res.json()
+
+        if(res.ok){
+            const data = json.data                        
+            Cookies.set('email', data.email, {expires: 3})
+            navigate('/main')
+        }
     }
 
     return (
@@ -42,9 +63,9 @@ const Signin = () => {
                 <h3 className={styles.title} id="text">Simple Chat Web Sign In</h3>
                 <div className={styles.card}>
                     <form className={styles.form} onSubmit={handleSubmit}>                        
-                        <input id="input" className={styles.input}  type='email' name='email' placeholder='Input Email' required></input>
-                        <input id="input" className={styles.input} type='password' name='password' placeholder='Input Password' required></input>
-                        <button type="submit" className={styles.btn}>Register Now</button>
+                        <input id="input" className={styles.input}  onChange={(e) => setData({...data, email: e.target.value})}type='email' name='email' placeholder='Input Email' required></input>
+                        <input id="input" className={styles.input} onChange={(e) => setData({...data, password: e.target.value})}type='password' name='password' placeholder='Input Password' required></input>
+                        <button type="submit" className={styles.btn}>Signin Now</button>
                         <a href='/register' className={styles.link}>Dont have an account? Register here</a>
                     </form>
                 </div>

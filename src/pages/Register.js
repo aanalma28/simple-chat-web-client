@@ -1,5 +1,6 @@
 import styles from '../style/Register.module.css'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
     useEffect(() => {
@@ -11,8 +12,7 @@ const Register = () => {
 
         if(darkMode === 'enabled'){
             container.style.backgroundColor = '#1f1f1f'
-            wrapper.style.backgroundColor = '#383838'
-            wrapper.style.boxShadow = '0px 0px 50px rgba(170, 170, 170, 0.1)'      
+            wrapper.style.backgroundColor = '#383838'            
             text.style.color = 'white'
             inputs.forEach((input) => {
                 input.style.backgroundColor = '#303030'
@@ -37,6 +37,8 @@ const Register = () => {
         password: ''
     })
 
+    const navigate = useNavigate()
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(data)
@@ -47,9 +49,14 @@ const Register = () => {
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data)
             })
+            
+            // const json = await res.json()
+            // console.log(json)
 
-            const json = await res.json()
-            console.log(json)
+            if(res.ok){
+                console.log("Register Successfully")
+                navigate('/signin')
+            }            
             
         }catch(err){
             console.log(err)

@@ -7,10 +7,12 @@ import Settings from '../components/Settings'
 import styles2 from '../style/Sidebar.module.css'
 import Profile from '../components/Profile'
 import { useState, useEffect } from 'react'
-
+import Auth from './Auth'
 
 
 const Mainview = () => {
+    Auth()
+    
     const [content, setContent] = useState('')    
     
     useEffect(() => {        

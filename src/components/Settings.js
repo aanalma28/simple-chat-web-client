@@ -179,6 +179,7 @@ const Contact = () => {
                         <div className={isDark === 'disabled' ? styles.longCircle : styles.longCircleDark} id="long-circle"></div>
                     </div>                    
                 </div>
+                <button>Logout</button>
             </div>
         </Content>
     )
