@@ -7,13 +7,50 @@ import Settings from '../components/Settings'
 import styles2 from '../style/Sidebar.module.css'
 import Profile from '../components/Profile'
 import { useState, useEffect } from 'react'
-import Auth from './Auth'
 
 
 const Mainview = () => {
-    Auth()
-    
-    const [content, setContent] = useState('')    
+    const [content, setContent] = useState('')
+    const [profile, setProfile] = useState({
+        username: '',
+        email: '',
+        hobby: '',
+        description: ''
+    })
+
+    useEffect(() => {
+        const auth = async() => {
+            const res = await fetch('http://localhost:3030/getSpecUser', {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },                
+            })
+
+            const data = await res.json()
+            console.log(data)
+
+            if(res.ok){                                
+                return data
+            }else{
+                return null
+            }
+        }
+
+        auth().then(data => {            
+            if(data !== null){
+                setProfile({
+                    email: data.email,
+                    username: data.username,
+                    hobby: data.hobby,
+                    description: data.description
+                })
+            }else{
+                window.location.href = '/signin'
+            }
+        })
+    }, [])
     
     useEffect(() => {        
         const chat = document.getElementById('chat')
@@ -272,7 +309,7 @@ const Mainview = () => {
                 </div>
                 {content === 'settings' ? <Settings></Settings>
                 : content === 'list' ? <List></List>
-                : content === 'profile' ? <Profile></Profile>
+                : content === 'profile' ? <Profile user={profile}></Profile>
                 : <Chats></Chats>}
                 <Messages></Messages>
             </div>

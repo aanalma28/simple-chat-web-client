@@ -1,7 +1,7 @@
 import styles from '../style/Register.module.css'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Cookies from 'js-cookie'
+
 
 const Signin = () => {
     useEffect(() => {
@@ -44,15 +44,12 @@ const Signin = () => {
         
         const res = await fetch('http://localhost:3030/signin', {
             method: 'POST',
+            credentials: 'include',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
-        })
+        })        
 
-        const json = await res.json()
-
-        if(res.ok){
-            const data = json.data                        
-            Cookies.set('email', data.email, {expires: 3})
+        if(res.ok){            
             navigate('/main')
         }
     }

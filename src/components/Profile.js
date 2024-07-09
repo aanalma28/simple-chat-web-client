@@ -1,8 +1,29 @@
 import Content from "./Content"
 import Icon from "./Icon"
 import styles from '../style/Profile.module.css'
+import { useState } from "react"
 
-const Contact = () => {
+const Profile = (user) => {    
+    console.log(user)
+
+    const [data, setData] = useState({
+        username: '',
+        hobby: '',
+        description: ''
+    })
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const res = await fetch('http://localhost:3030', {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        })
+
+        const json = await res.json()
+        console.log(json)
+    }
     return (
         <Content>
             <div className={styles.header}>
@@ -12,10 +33,10 @@ const Contact = () => {
                 <div className={styles.imgWrapper}>
                     <Icon name="profile" size="150px"/>                
                 </div>
-                <form onSubmit="" className={styles.form}>
-                    <input id="input" className={styles.input} type="text" name="username" placeholder="Username"></input>
-                    <input id="input" className={styles.input} type="text" name="hobby" placeholder="Hobby"></input>
-                    <textarea id="input" className={styles.input} type="" name="description" placeholder="Description"></textarea>
+                <form onSubmit={handleSubmit} className={styles.form}>
+                    <input id="input" value={user.username} onChange={(e) => setData({...data, username: e.target.value})} className={styles.input} type="text" name="username" placeholder="Username"></input>
+                    <input id="input" value={user.hobby} onChange={(e) => setData({...data, hobby: e.target.value})} className={styles.input} type="text" name="hobby" placeholder="Hobby"></input>
+                    <textarea id="input" value={user.description} onChange={(e) => setData({...data, description: e.target.value})} className={styles.input} type="" name="description" placeholder="Description"></textarea>
                     <button type="submit" className={styles.btn}>Edit</button>
                 </form>
             </div>
@@ -23,4 +44,4 @@ const Contact = () => {
     )
 }
 
-export default Contact
+export default Profile
