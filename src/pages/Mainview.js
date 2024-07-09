@@ -11,12 +11,7 @@ import { useState, useEffect } from 'react'
 
 const Mainview = () => {
     const [content, setContent] = useState('')
-    const [profile, setProfile] = useState({
-        username: '',
-        email: '',
-        hobby: '',
-        description: ''
-    })
+    const [profile, setProfile] = useState()
 
     useEffect(() => {
         const auth = async() => {
@@ -28,24 +23,19 @@ const Mainview = () => {
                 },                
             })
 
-            const data = await res.json()
-            console.log(data)
+            const json = await res.json()
 
             if(res.ok){                                
-                return data
+                return json
             }else{
                 return null
             }
-        }
+        }        
 
-        auth().then(data => {            
+        auth().then(json => {            
+            const data = json.data            
             if(data !== null){
-                setProfile({
-                    email: data.email,
-                    username: data.username,
-                    hobby: data.hobby,
-                    description: data.description
-                })
+                setProfile(data)
             }else{
                 window.location.href = '/signin'
             }

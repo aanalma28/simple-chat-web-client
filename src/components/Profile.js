@@ -3,14 +3,12 @@ import Icon from "./Icon"
 import styles from '../style/Profile.module.css'
 import { useState } from "react"
 
-const Profile = (user) => {    
-    console.log(user)
-
+const Profile = ({user}) => {            
     const [data, setData] = useState({
-        username: '',
-        hobby: '',
-        description: ''
-    })
+        username: user.username,
+        hobby: user.hobby,
+        description: user.description
+    })    
 
     const handleSubmit = async (e) => {
         e.preventDefault()
