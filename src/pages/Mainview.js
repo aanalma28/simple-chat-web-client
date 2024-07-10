@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react'
 
 const Mainview = () => {
     const [content, setContent] = useState('')
-    const [profile, setProfile] = useState()
+    const [profile, setProfile] = useState()    
 
     useEffect(() => {
         const auth = async() => {
@@ -30,7 +30,7 @@ const Mainview = () => {
             }else{
                 return null
             }
-        }        
+        }                
 
         auth().then(json => {            
             const data = json.data            
@@ -39,7 +39,8 @@ const Mainview = () => {
             }else{
                 window.location.href = '/signin'
             }
-        })
+        })                   
+
     }, [])
     
     useEffect(() => {        
@@ -298,7 +299,7 @@ const Mainview = () => {
                     </div>
                 </div>
                 {content === 'settings' ? <Settings></Settings>
-                : content === 'list' ? <List></List>
+                : content === 'list' ? <List ></List>
                 : content === 'profile' ? <Profile user={profile}></Profile>
                 : <Chats></Chats>}
                 <Messages></Messages>
