@@ -13,8 +13,9 @@ const Profile = ({user}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const res = await fetch('http://localhost:3030', {
+        const res = await fetch('http://localhost:3030/editprofile', {
             method: 'PUT',
+            credentials: 'include',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
         })
