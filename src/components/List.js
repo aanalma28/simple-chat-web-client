@@ -27,6 +27,7 @@ const Contact = () => {
 
         users().then(json => {
             const data = json.data
+            console.log(data)
             if(data != null){
                 setAllUsers(data)
             }else{
