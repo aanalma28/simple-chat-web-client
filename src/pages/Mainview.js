@@ -24,22 +24,16 @@ const Mainview = () => {
             })
 
             const json = await res.json()
-
-            if(res.ok){                                
-                return json
-            }else{
-                return null
-            }
-        }                
-
-        auth().then(json => {            
-            const data = json.data            
-            if(data !== null){
+            
+            if(res.ok){
+                const data = json.data
                 setProfile(data)
             }else{
                 window.location.href = '/signin'
             }
-        })                   
+        }    
+        
+        auth()
 
     }, [])
     
