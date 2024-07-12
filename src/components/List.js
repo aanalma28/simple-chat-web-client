@@ -94,6 +94,23 @@ const Contact = () => {
         }
     })
 
+    const handleAddClick = async (e) => {
+        e.preventDefault()
+        
+        const res = await fetch('http://localhost:3030/addcontact', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                username: data.username,
+                contact_id: data.user_id
+            })
+        })
+
+        const json = await res.json()
+        console.log(json)
+    }
+
     return (
         <Content>
             {isClick ? 
@@ -112,7 +129,7 @@ const Contact = () => {
                                 description: '',
                             })
                         }}>Back</button>
-                        <button className={styles.add}>+ Add</button>
+                        <button className={styles.add} onClick={handleAddClick}>+ Add</button>
                     </div>
                 </div>
                 :
