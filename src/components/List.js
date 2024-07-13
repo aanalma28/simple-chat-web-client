@@ -12,6 +12,7 @@ const Contact = () => {
         username: '',
         description: ''
     })
+    const [contactId, setContactId] = useState()        
 
     useEffect(() => {
         const users = async() => {
@@ -30,6 +31,17 @@ const Contact = () => {
             }
         }
 
+        const contacts = async() => {
+            const res = await fetch('http://localhost:3030/getUserContacts', {
+                method: 'GET',
+                credentials: 'include',
+                headers: {'Content-Type':'application/json'}
+            })
+
+            const json = res.json()            
+            return json
+        }
+
         users().then(json => {
             const data = json.data
             console.log(data)
@@ -38,6 +50,12 @@ const Contact = () => {
             }else{
                 setAllUsers(null)
             }
+        })
+
+        contacts().then(json => {
+            const data = json.data
+            const contact_id = data.contact_id
+            setContactId(contact_id)
         })
 
     }, [])   
@@ -110,7 +128,7 @@ const Contact = () => {
         const json = await res.json()
         console.log(json)
     }
-
+    
     return (
         <Content>
             {isClick ? 
@@ -129,7 +147,13 @@ const Contact = () => {
                                 description: '',
                             })
                         }}>Back</button>
-                        <button className={styles.add} onClick={handleAddClick}>+ Add</button>
+                                             
+                        {
+                            contactId.find(value => value === data.user_id) !== undefined ? 
+                            <button className={styles.added}>Added</button>
+                            :
+                            <button className={styles.add} onClick={handleAddClick}>Add</button>
+                        }
                     </div>
                 </div>
                 :
@@ -145,18 +169,18 @@ const Contact = () => {
                 </div>
                 <div className={styles.mainContent}>
                     {allUsers ? (
-                        allUsers.map((user, index) => (
-                        <div key={index} className={styles.mainList} id="mainlist" onClick={() => {
-                            setIsClick(true)
-                            setData({
-                                user_id: user.user_id,
-                                username: user.username,
-                                description: user.description
-                            })
-                        }}>
-                            <Icon name="profile" size="50px"/>
-                            <p id="text">{user.username}</p>
-                        </div>
+                        allUsers.map((user, index) => (                            
+                            <div key={index} className={styles.mainList} id="mainlist" onClick={() => {
+                                setIsClick(true)
+                                setData({
+                                    user_id: user.user_id,
+                                    username: user.username,
+                                    description: user.description
+                                })                                
+                            }}>
+                                <Icon name="profile" size="50px"/>
+                                <p id="text">{user.username}</p>
+                            </div>
                         ))
                     ) : (
                         <p>No users found</p>
