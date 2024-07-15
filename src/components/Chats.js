@@ -1,8 +1,28 @@
 import Content from "./Content"
 import styles from '../style/Chats.module.css'
 import Icon from "./Icon"
+import { useEffect } from "react"
 
 const Chats = () => {
+    useEffect(() => {
+        const getAllChats = async() => {
+            const res = await fetch('http://localhost:3030/getAllChats', {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                }                
+            })
+
+            const json = res.json()
+            
+            if(res.ok){
+                return json
+            }
+        }
+
+        getAllChats().then(json => console.log(json))
+    }, [])
     return (
         <Content>
             <div className={styles.header}>

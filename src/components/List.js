@@ -38,24 +38,36 @@ const Contact = () => {
                 headers: {'Content-Type':'application/json'}
             })
 
-            const json = res.json()            
-            return json
+            const json = res.json()                        
+
+            if(res.ok){
+                return json
+            }else{
+                return null
+            }
         }
 
         users().then(json => {
-            const data = json.data
-            console.log(data)
-            if(data != null){
+            if(json != null){
+                const data = json.data
+                console.log(data)
                 setAllUsers(data)
             }else{
                 setAllUsers(null)
             }
+                        
         })
 
         contacts().then(json => {
-            const data = json.data
-            const contact_id = data.contact_id
-            setContactId(contact_id)
+            if(json != null){
+                const data = json.data
+                const contact_id = data
+                console.log(contact_id)
+                setContactId(contact_id)
+            }else{
+                setContactId(null)
+            }
+            
         })
 
     }, [])   
@@ -127,7 +139,7 @@ const Contact = () => {
 
         const json = await res.json()
         console.log(json)
-    }
+    }            
     
     return (
         <Content>
@@ -148,9 +160,9 @@ const Contact = () => {
                             })
                         }}>Back</button>
                                              
-                        {
-                            contactId.find(value => value === data.user_id) !== undefined ? 
-                            <button className={styles.added}>Added</button>
+                        {                            
+                            contactId != null && contactId.some(c => allUsers.some(user => user.user_id === c.contact_id)) ?
+                            <button className={styles.added}>Added</button> 
                             :
                             <button className={styles.add} onClick={handleAddClick}>Add</button>
                         }
