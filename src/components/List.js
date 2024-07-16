@@ -12,7 +12,8 @@ const Contact = () => {
         username: '',
         description: ''
     })
-    const [contactId, setContactId] = useState()        
+    const [contact, setContact] = useState()
+    const [isAdded, setIsAdded] = useState(false)
 
     useEffect(() => {
         const users = async() => {
@@ -61,11 +62,11 @@ const Contact = () => {
         contacts().then(json => {
             if(json != null){
                 const data = json.data
-                const contact_id = data
-                console.log(contact_id)
-                setContactId(contact_id)
+                const contact = data
+                console.log(contact)
+                setContact(contact)
             }else{
-                setContactId(null)
+                setContact(null)
             }
             
         })
@@ -139,7 +140,7 @@ const Contact = () => {
 
         const json = await res.json()
         console.log(json)
-    }            
+    }        
     
     return (
         <Content>
@@ -160,11 +161,10 @@ const Contact = () => {
                             })
                         }}>Back</button>
                                              
-                        {                            
-                            contactId != null && contactId.some(c => allUsers.some(user => user.user_id === c.contact_id)) ?
-                            <button className={styles.added}>Added</button> 
+                        {isAdded ?                                
+                                <button className={styles.added}>Added</button>
                             :
-                            <button className={styles.add} onClick={handleAddClick}>Add</button>
+                                <button className={styles.add} onClick={handleAddClick}>Add</button>
                         }
                     </div>
                 </div>
@@ -188,7 +188,9 @@ const Contact = () => {
                                     user_id: user.user_id,
                                     username: user.username,
                                     description: user.description
-                                })                                
+                                })
+                                const added = contact.some(c => c.contact_id === user.user_id)                                
+                                setIsAdded(added ? true : false)
                             }}>
                                 <Icon name="profile" size="50px"/>
                                 <p id="text">{user.username}</p>
