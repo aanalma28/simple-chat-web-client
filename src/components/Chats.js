@@ -3,7 +3,7 @@ import styles from '../style/Chats.module.css'
 import Icon from "./Icon"
 import { useEffect, useState } from "react"
 
-const Chats = () => {
+const Chats = ({onData}) => {
     const [chatsData, setChatsData] = useState()
     useEffect(() => {
         const getAllChats = async() => {
@@ -31,6 +31,8 @@ const Chats = () => {
             }
         })
     }, [])
+
+    console.log(chatsData)
 
     useEffect(() => {
         const isDark = localStorage.getItem('darkMode')
@@ -67,7 +69,7 @@ const Chats = () => {
             })
         }
         
-    })
+    })   
 
     return (
         <Content>
@@ -84,13 +86,15 @@ const Chats = () => {
             <div className={styles.mainContainer}>
                 {chatsData ? 
                     chatsData.map((chat, index) => (
-                        <div key={index} id="list" className={styles.mainList}>
+                        <div key={index} id="list" className={styles.mainList} onClick={() => {
+                            onData(chat)
+                        }}>
                             <div className={styles.image}>
                                 <Icon name="profile" size="50px"/>
                             </div>
                             <div className={styles.text}>
                                 <h3 id="text">{chat.username}</h3>
-                                <p id="text">Message here...</p>
+                                <p id="text">{chat.chats_data.length>0 ? 'Message':'Click here to message'}</p>
                             </div>
                         </div> 
                     ))

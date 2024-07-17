@@ -92,13 +92,15 @@ const Mainview = () => {
                 })
             })
 
-            inputMsg.style.backgroundColor = '#3d3d3d'
-            inputMsg.style.border = '1px solid #3d3d3d'
-            inputMsg.style.color = 'white'
-
-            msgHeader.style.backgroundColor = '#1f1f1f'
-            msgMain.style.backgroundColor ='#0c0c0c'
-            msgFooter.style.backgroundColor = '#1f1f1f'
+            if(inputMsg != null && msgHeader != null && msgMain != null && msgFooter != null){
+                inputMsg.style.backgroundColor = '#3d3d3d'
+                inputMsg.style.border = '1px solid #3d3d3d'
+                inputMsg.style.color = 'white'
+    
+                msgHeader.style.backgroundColor = '#1f1f1f'
+                msgMain.style.backgroundColor ='#0c0c0c'
+                msgFooter.style.backgroundColor = '#1f1f1f'
+            }           
         }else{
             containerSidebar.style.backgroundColor = '#f1f1f1'                
             content.style.backgroundColor = 'white'
@@ -133,13 +135,15 @@ const Mainview = () => {
                 })
             })
 
-            inputMsg.style.backgroundColor = 'white'
-            inputMsg.style.border = '1px solid white'
-            inputMsg.style.color = 'black'
+            if(inputMsg != null && msgHeader != null && msgMain != null && msgFooter != null){
+                inputMsg.style.backgroundColor = 'white'
+                inputMsg.style.border = '1px solid white'
+                inputMsg.style.color = 'black'
 
-            msgHeader.style.backgroundColor = '#f1f1f1'
-            msgMain.style.backgroundColor ='#ccc'
-            msgFooter.style.backgroundColor = '#f1f1f1'
+                msgHeader.style.backgroundColor = '#f1f1f1'
+                msgMain.style.backgroundColor ='#ccc'
+                msgFooter.style.backgroundColor = '#f1f1f1'
+            }            
         }
 
         chat.addEventListener('click', () => {
@@ -269,6 +273,14 @@ const Mainview = () => {
         setContent('profile')
     }
 
+    const [dataFromChild, setDataFromChild] = useState()
+
+    const handleDataFromChats = (data) => {
+        if(data){
+            setDataFromChild(data)
+        }
+    }
+
     return (        
         <div className={styles.container}>            
             <div className={styles.wrapper}>
@@ -295,8 +307,8 @@ const Mainview = () => {
                 {content === 'settings' ? <Settings></Settings>
                 : content === 'list' ? <List ></List>
                 : content === 'profile' ? <Profile user={profile}></Profile>
-                : <Chats></Chats>}
-                <Messages></Messages>
+                : <Chats onData={handleDataFromChats}></Chats>}
+                <Messages data={dataFromChild}></Messages>
             </div>
         </div>
     )

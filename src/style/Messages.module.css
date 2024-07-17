@@ -10,6 +10,18 @@
     justify-content: space-between;
 }
 
+.wrapper2{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.text{    
+    max-width: 50%;   
+}
+
 .header{
     display: flex;
     height: 10%;
