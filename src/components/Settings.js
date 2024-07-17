@@ -21,10 +21,76 @@ const Contact = () => {
 
         const inputs = document.querySelectorAll('#input')
         const inputMsg = document.getElementById('input-message')
+
+        const containerNoMsg = document.getElementById('container-no-msg')
         
         let number = parseInt(localStorage.getItem('number')) || 0
         const circle = document.getElementById('circle')
         const longCircle = document.getElementById('long-circle')
+        
+        if(number %2 === 0){
+            chat.addEventListener('click', () => {
+                chat.style.backgroundColor = '#383838'                
+                setting.style.backgroundColor = '#1f1f1f'
+                profile.style.backgroundColor = '#1f1f1f'
+                contact.style.backgroundColor = '#1f1f1f'
+            })
+
+            setting.addEventListener('click', () => {
+                chat.style.backgroundColor = '#1f1f1f'                
+                setting.style.backgroundColor = '#383838'
+                profile.style.backgroundColor = '#1f1f1f'
+                contact.style.backgroundColor = '#1f1f1f'
+            })
+
+            profile.addEventListener('click', () => {
+                chat.style.backgroundColor = '#1f1f1f'                
+                setting.style.backgroundColor = '#1f1f1f'
+                profile.style.backgroundColor = '#383838'
+                contact.style.backgroundColor = '#1f1f1f'
+            })
+
+            contact.addEventListener('click', () => {
+                chat.style.backgroundColor = '#1f1f1f'                
+                setting.style.backgroundColor = '#1f1f1f'
+                profile.style.backgroundColor = '#1f1f1f'
+                contact.style.backgroundColor = '#383838'
+            })
+
+            
+        }else{
+            chat.addEventListener('click', () => {
+                chat.style.backgroundColor = '#ccc'          
+                setting.style.backgroundColor = '#f1f1f1'
+                profile.style.backgroundColor = '#f1f1f1'
+                contact.style.backgroundColor = '#f1f1f1'                                
+            })
+    
+            setting.addEventListener('click', () => {
+                chat.style.backgroundColor = '#f1f1f1'
+                setting.style.backgroundColor = '#ccc'                
+                profile.style.backgroundColor = '#f1f1f1'
+                contact.style.backgroundColor = '#f1f1f1'                     
+                
+            })
+    
+            profile.addEventListener('click', () => {
+                chat.style.backgroundColor = '#f1f1f1'
+                setting.style.backgroundColor = '#f1f1f1'
+                profile.style.backgroundColor = '#ccc'
+                contact.style.backgroundColor = '#f1f1f1'                
+                
+            })
+    
+            contact.addEventListener('click', () => {
+                chat.style.backgroundColor = '#f1f1f1'
+                setting.style.backgroundColor = '#f1f1f1'
+                profile.style.backgroundColor = '#f1f1f1'
+                contact.style.backgroundColor = '#ccc'                
+                
+            })            
+        }
+
         circle.addEventListener('click', (e) => {            
             e.preventDefault()            
             if(number % 2 === 0) {
@@ -40,17 +106,23 @@ const Contact = () => {
                 text.forEach((txt) => {
                     txt.style.color = "whitesmoke"
                 })
-
-                inputMsg.style.backgroundColor = '#3d3d3d'
-                inputMsg.style.border = '1px solid #3d3d3d'
                 
-                inputMsg.addEventListener('focus', () => {
-                    inputMsg.style.color = 'white'
-                })
+                if(inputMsg != null && msgHeader != null && msgMain != null && msgFooter != null){
+                    inputMsg.style.backgroundColor = '#3d3d3d'
+                    inputMsg.style.border = '1px solid #3d3d3d'
+                    
+                    inputMsg.addEventListener('focus', () => {
+                        inputMsg.style.color = 'white'
+                    })
 
-                msgHeader.style.backgroundColor = '#1f1f1f'
-                msgMain.style.backgroundColor ='#0c0c0c'
-                msgFooter.style.backgroundColor = '#1f1f1f'
+                    msgHeader.style.backgroundColor = '#1f1f1f'
+                    msgMain.style.backgroundColor ='#0c0c0c'
+                    msgFooter.style.backgroundColor = '#1f1f1f'
+                }
+                
+                if(containerNoMsg != null){
+                    containerNoMsg.style.backgroundColor = '#0c0c0c'
+                }
 
                 inputs.forEach((input) => {
                     input.style.backgroundColor = '#3d3d3d'
@@ -107,17 +179,22 @@ const Contact = () => {
                 content.style.border = '1px solid #ccc'
                 text.forEach((txt) => {
                     txt.style.color = 'black'
-                })
+                })                
 
-                inputMsg.style.backgroundColor = 'white'
-                inputMsg.style.border = '1px solid white'
-                inputMsg.addEventListener('focus', () => {
-                    inputMsg.style.color = 'black'
-                })
+                if(inputMsg != null && msgHeader != null && msgMain != null && msgFooter != null){
+                    inputMsg.style.backgroundColor = 'white'
+                    inputMsg.style.border = '1px solid white'
+                    inputMsg.addEventListener('focus', () => {
+                        inputMsg.style.color = 'black'
+                    })
+                    msgHeader.style.backgroundColor = '#f1f1f1'
+                    msgMain.style.backgroundColor ='#ccc'
+                    msgFooter.style.backgroundColor = '#f1f1f1'
+                }
 
-                msgHeader.style.backgroundColor = '#f1f1f1'
-                msgMain.style.backgroundColor ='#ccc'
-                msgFooter.style.backgroundColor = '#f1f1f1'
+                if(containerNoMsg != null){
+                    containerNoMsg.style.backgroundColor = '#ccc'
+                }
 
                 inputs.forEach((input) => {
                     input.style.backgroundColor = 'white'

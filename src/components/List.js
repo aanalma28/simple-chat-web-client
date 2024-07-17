@@ -188,9 +188,8 @@ const Contact = () => {
                                     user_id: user.user_id,
                                     username: user.username,
                                     description: user.description
-                                })
-                                const added = contact.some(c => c.contact_id === user.user_id)                                
-                                setIsAdded(added ? true : false)
+                                })                                                             
+                                setIsAdded(contact != null && contact.some(c => c.contact_id === user.user_id) ? true : false)
                             }}>
                                 <Icon name="profile" size="50px"/>
                                 <p id="text">{user.username}</p>

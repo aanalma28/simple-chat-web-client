@@ -42,8 +42,7 @@ const Mainview = () => {
         const setting = document.getElementById('setting')
         const profile = document.getElementById('profile')
         const contact = document.getElementById('contact')
-        const containerSidebar = document.getElementById('container-sidebar')
-        const isDark = containerSidebar.getAttribute('name')
+        const containerSidebar = document.getElementById('container-sidebar')        
         const isDarkSidebar = localStorage.getItem('darkMode')
         
         const content = document.getElementById('content')
@@ -146,10 +145,9 @@ const Mainview = () => {
             }            
         }
 
-        chat.addEventListener('click', () => {
-            console.log(isDark)
+        chat.addEventListener('click', () => {            
             console.log(isDarkSidebar)                                
-            if(isDark === 'light' || isDarkSidebar === 'disabled'){                
+            if(isDarkSidebar === 'disabled'){                
                 chat.style.backgroundColor = '#ccc'          
                 setting.style.backgroundColor = '#f1f1f1'
                 profile.style.backgroundColor = '#f1f1f1'
@@ -160,7 +158,7 @@ const Mainview = () => {
                 profile.setAttribute('name','not-clicked')     
                 contact.setAttribute('name', 'not-clicked')
                 
-            }else if(isDark === 'dark' || isDarkSidebar === 'enabled'){                
+            }else if(isDarkSidebar === 'enabled'){                
                 chat.style.backgroundColor = '#383838'                
                 setting.style.backgroundColor = '#1f1f1f'
                 profile.style.backgroundColor = '#1f1f1f'
@@ -175,7 +173,7 @@ const Mainview = () => {
         })
 
         setting.addEventListener('click', () => {            
-            if(isDark === 'light' || isDarkSidebar === 'disabled'){
+            if(isDarkSidebar === 'disabled'){
                 chat.style.backgroundColor = '#f1f1f1'
                 setting.style.backgroundColor = '#ccc'                
                 profile.style.backgroundColor = '#f1f1f1'
@@ -186,7 +184,7 @@ const Mainview = () => {
                 profile.setAttribute('name','not-clicked')     
                 contact.setAttribute('name', 'not-clicked')
                 
-            }else if(isDark === 'dark' || isDarkSidebar === 'enabled'){
+            }else if(isDarkSidebar === 'enabled'){
                 chat.style.backgroundColor = '#1f1f1f'
                 setting.style.backgroundColor = '#383838'                
                 profile.style.backgroundColor = '#1f1f1f'
@@ -202,7 +200,7 @@ const Mainview = () => {
         })
 
         profile.addEventListener('click', () => {
-            if(isDark === 'light' || isDarkSidebar === 'disabled'){
+            if(isDarkSidebar === 'disabled'){
                 chat.style.backgroundColor = '#f1f1f1'
                 setting.style.backgroundColor = '#f1f1f1'
                 profile.style.backgroundColor = '#ccc'
@@ -213,7 +211,7 @@ const Mainview = () => {
                 profile.setAttribute('name','clicked')     
                 contact.setAttribute('name', 'not-clicked')
                                 
-            }else if(isDark === 'dark' || isDarkSidebar === 'enabled'){
+            }else if(isDarkSidebar === 'enabled'){
                 chat.style.backgroundColor = '#1f1f1f'
                 setting.style.backgroundColor = '#1f1f1f'
                 profile.style.backgroundColor = '#383838'
@@ -229,7 +227,7 @@ const Mainview = () => {
         })
 
         contact.addEventListener('click', () => {
-            if(isDark === 'light' || isDarkSidebar === 'disabled'){
+            if(isDarkSidebar === 'disabled'){
                 chat.style.backgroundColor = '#f1f1f1'
                 setting.style.backgroundColor = '#f1f1f1'
                 profile.style.backgroundColor = '#f1f1f1'

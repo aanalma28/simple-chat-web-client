@@ -4,7 +4,7 @@ import Icon from "./Icon"
 import { useEffect, useState } from "react"
 
 const Chats = ({onData}) => {
-    const [chatsData, setChatsData] = useState()
+    const [chatsData, setChatsData] = useState([])
     useEffect(() => {
         const getAllChats = async() => {
             const res = await fetch('http://localhost:3030/getAllChats', {
@@ -15,8 +15,8 @@ const Chats = ({onData}) => {
                 }                
             })
 
-            const json = res.json()
-            
+            const json = await res.json()
+            console.log(json)
             if(res.ok){
                 return json
             }
@@ -28,11 +28,9 @@ const Chats = ({onData}) => {
                 setChatsData(chats)
             }else{
                 setChatsData(null)
-            }
+            }            
         })
-    }, [])
-
-    console.log(chatsData)
+    }, [])    
 
     useEffect(() => {
         const isDark = localStorage.getItem('darkMode')
@@ -84,7 +82,7 @@ const Chats = ({onData}) => {
                 </div>
             </div>
             <div className={styles.mainContainer}>
-                {chatsData ? 
+                {chatsData.length>0 ? 
                     chatsData.map((chat, index) => (
                         <div key={index} id="list" className={styles.mainList} onClick={() => {
                             onData(chat)
@@ -94,12 +92,14 @@ const Chats = ({onData}) => {
                             </div>
                             <div className={styles.text}>
                                 <h3 id="text">{chat.username}</h3>
-                                <p id="text">{chat.chats_data.length>0 ? 'Message':'Click here to message'}</p>
+                                <p id="text">{chat.chats_data.length>0 ? 'Message':'Click here to message.....'}</p>
                             </div>
                         </div> 
                     ))
                     :
-                    <p>No Chats</p>
+                    <div className={styles.noChatsWrapper}>
+                        <p className={styles.noChatsTxt} id="text">No Chats</p>
+                    </div>                    
                 }                
             </div>
         </Content>

@@ -5,16 +5,16 @@ import { useEffect, useState } from 'react'
 
 const Messages = ({data}) => {
     useEffect(() => {
-        const containerNoData = document.getElementById('container-no-data')
-        const txt = document.getElementById('txt')
+        const containerNoMsg = document.getElementById('container-no-msg')
+        const txt = document.getElementById('wrapper-no-msg')
         const isDark = localStorage.getItem('darkMode')
 
-        if(containerNoData != null && txt != null){
+        if(containerNoMsg != null && txt != null){
             if(isDark === 'enabled'){
-                containerNoData.style.backgroundColor = '#0c0c0c'
+                containerNoMsg.style.backgroundColor = '#0c0c0c'
                 txt.style.color = '#fff'
             }else{
-                containerNoData.style.backgroundColor = '#ccc'
+                containerNoMsg.style.backgroundColor = '#ccc'
                 txt.style.color = '#f1f1f1'
             }
         }
@@ -34,7 +34,7 @@ const Messages = ({data}) => {
         setMsg('')
     }    
 
-    if(data){
+    if(data !== undefined){
         return (
             <div className={styles.container}>
                 <div className={styles.wrapper}>
@@ -61,10 +61,10 @@ const Messages = ({data}) => {
         )
     }else{
         return (
-            <div className={styles.container} id="container-no-data">
+            <div className={styles.container} id="container-no-msg">
                 <div className={styles.wrapper2}>
-                    <div className={styles.text} id="txt">
-                        <h1>Get ready for chatting with other users</h1>
+                    <div className={styles.text} id="wrapper-no-msg">
+                        <h1 id="text">Get ready for chatting with other users</h1>
                     </div>
                 </div>
             </div>
