@@ -19,9 +19,36 @@ const Messages = ({data}) => {
             }
         }
 
-    })  
+    })
 
-    const socket = io('http://localhost:3030')    
+    const [token, setToken] = useState()
+
+    useEffect(() => {
+        const res = async() => {
+            const response = await fetch('http://localhost:3030/getToken', {
+                method: 'GET',
+                credentials: 'include',
+                headers: {'Content-Type': 'application/json'}
+            })
+
+            const json = await response.json()
+
+            if(response.ok){
+                return json
+            }
+        }
+
+        res().then(json => {
+            const token = json.data
+            if(token){
+                setToken(token)
+            }else{
+                setToken(null)
+            }
+        })
+    })
+
+    const socket = io('http://localhost:3030', {extraHeaders: {Cookies: `token=${token}`}})
     const [msg, setMsg] = useState()    
 
     socket.on('connect', () => {
@@ -41,7 +68,7 @@ const Messages = ({data}) => {
                     <div className={styles.header} id="message-header">
                         <div className={styles.info}>
                             <Icon name="profile" size="45px"/>
-                            <h3 id="text">{data.username}</h3>                        
+                            <h3 id="text">{data.username}</h3>           
                         </div>
                         <div className={styles.action}>
                             

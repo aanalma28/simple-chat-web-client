@@ -3,7 +3,7 @@ import styles from '../style/List.module.css'
 import Icon from "./Icon"
 import { useState, useEffect } from "react"
 
-const Contact = () => {
+const Contact = ({userData}) => {
     const isDark = localStorage.getItem('darkMode')
     const [isClick, setIsClick] = useState(false)
     const [allUsers, setAllUsers] = useState()
@@ -166,6 +166,12 @@ const Contact = () => {
                             :
                                 <button className={styles.add} onClick={handleAddClick}>Add</button>
                         }
+                        <button className={styles.add} onClick={() => {
+                            userData({
+                                user_id: data.user_id,
+                                username: data.username                                
+                            })
+                        }}>Chat</button>
                     </div>
                 </div>
                 :

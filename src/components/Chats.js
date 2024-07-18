@@ -2,35 +2,10 @@ import Content from "./Content"
 import styles from '../style/Chats.module.css'
 import Icon from "./Icon"
 import { useEffect, useState } from "react"
+import { io } from "socket.io-client"
 
 const Chats = ({onData}) => {
-    const [chatsData, setChatsData] = useState([])
-    useEffect(() => {
-        const getAllChats = async() => {
-            const res = await fetch('http://localhost:3030/getAllChats', {
-                method: 'GET',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                }                
-            })
-
-            const json = await res.json()
-            console.log(json)
-            if(res.ok){
-                return json
-            }
-        }
-
-        getAllChats().then(json => {
-            const chats = json.data.chats_data
-            if(chats){
-                setChatsData(chats)
-            }else{
-                setChatsData(null)
-            }            
-        })
-    }, [])    
+    const [chatsData, setChatsData] = useState([])        
 
     useEffect(() => {
         const isDark = localStorage.getItem('darkMode')
@@ -67,7 +42,14 @@ const Chats = ({onData}) => {
             })
         }
         
-    })   
+    })
+
+    // const socket = io('http://localhost:3030')
+
+    // socket.on('allmessage', (allMsg) => {
+    //     const chats = allMsg.chats_data
+    //     setChatsData(chats)
+    // })
 
     return (
         <Content>
@@ -92,7 +74,7 @@ const Chats = ({onData}) => {
                             </div>
                             <div className={styles.text}>
                                 <h3 id="text">{chat.username}</h3>
-                                <p id="text">{chat.chats_data.length>0 ? 'Message':'Click here to message.....'}</p>
+                                <p id="text">{chat.chat_data.length>0 ? 'Message':'Click here to message.....'}</p>
                             </div>
                         </div> 
                     ))

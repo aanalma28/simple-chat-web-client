@@ -273,11 +273,11 @@ const Mainview = () => {
 
     const [dataFromChild, setDataFromChild] = useState()
 
-    const handleDataFromChats = (data) => {
+    const handleData = (data) => {
         if(data){
             setDataFromChild(data)
         }
-    }
+    }        
 
     return (        
         <div className={styles.container}>            
@@ -303,9 +303,9 @@ const Mainview = () => {
                     </div>
                 </div>
                 {content === 'settings' ? <Settings></Settings>
-                : content === 'list' ? <List ></List>
+                : content === 'list' ? <List userData={handleData}></List>
                 : content === 'profile' ? <Profile user={profile}></Profile>
-                : <Chats onData={handleDataFromChats}></Chats>}
+                : <Chats onData={handleData}></Chats>}
                 <Messages data={dataFromChild}></Messages>
             </div>
         </div>
