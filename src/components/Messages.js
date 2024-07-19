@@ -22,8 +22,12 @@ const Messages = ({data}) => {
     })
 
     const [token, setToken] = useState()
+    const socket = io('http://localhost:3030', {extraHeaders: {Cookies: `token=${token}`}})
+    const [msg, setMsg] = useState()
+    const [allMsg, setAllMsg] = useState()
 
     useEffect(() => {
+        // console.log(data.user_id)
         const res = async() => {
             const response = await fetch('http://localhost:3030/getToken', {
                 method: 'GET',
@@ -32,7 +36,7 @@ const Messages = ({data}) => {
             })
 
             const json = await response.json()
-
+            console.log(json)
             if(response.ok){
                 return json
             }
@@ -46,20 +50,39 @@ const Messages = ({data}) => {
                 setToken(null)
             }
         })
-    })
 
-    const socket = io('http://localhost:3030', {extraHeaders: {Cookies: `token=${token}`}})
-    const [msg, setMsg] = useState()    
+        socket.on('connect', () => {
+            console.log('Connected to server')
+        })       
 
-    socket.on('connect', () => {
-        console.log('Connected to server')
-    })    
+        socket.on('disconnect', () => {
+            console.log('Disconnect from server')
+        })
+
+        socket.on('error', (err) => {
+            console.error('Socket error: ', err)
+        })
+
+        if(data){
+            socket.emit('getAllChats', data.user_id)
+    
+            socket.on('getAllChats', (allMessage) => {
+                setAllMsg(allMessage)
+            })        
+        }  
+
+        return () => {
+            socket.close()
+        }
+    })      
 
     const handleSubmit = (e) => {
         e.preventDefault()        
         socket.emit('chat', msg)
         setMsg('')
-    }    
+    }
+
+    console.log(allMsg)
 
     if(data !== undefined){
         return (
