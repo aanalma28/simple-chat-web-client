@@ -78,7 +78,7 @@ const Messages = ({data}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()        
-        socket.emit('chat', msg)
+        socket.emit('chat', msg, data.user_id, data.username)
         setMsg('')
     }
 
