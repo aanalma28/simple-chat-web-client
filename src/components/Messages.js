@@ -22,7 +22,7 @@ const Messages = ({data}) => {
     })
 
     const [token, setToken] = useState()
-    const socket = io('http://localhost:3030', {extraHeaders: {Cookies: `token=${token}`}})
+    const [socket, setSocket] = useState(null)
     const [msg, setMsg] = useState()
     const [allMsg, setAllMsg] = useState()
 
@@ -50,6 +50,16 @@ const Messages = ({data}) => {
                 setToken(null)
             }
         })
+    }, [])
+
+    useEffect(() => {
+        const socket = io('http://localhost:3030', {
+            extraHeaders: {Cookies: `token=${token}`},
+            reconnection: true,
+            reconnectionAttempts: 5,
+            reconnectionDelay: 1000,
+            timeout: 20000, // timeout 20 detik
+        })
 
         socket.on('connect', () => {
             console.log('Connected to server')
@@ -62,25 +72,40 @@ const Messages = ({data}) => {
         socket.on('error', (err) => {
             console.error('Socket error: ', err)
         })
+        
+        socket.on('messageReceived', (msg) => {
+            console.log(msg);
+        });
+        
+        socket.on('messageError', (msg) => {
+            console.error(msg);
+        });
 
-        if(data){
+        if(data && token){
             socket.emit('getAllChats', data.user_id)
     
             socket.on('getAllChats', (allMessage) => {
                 setAllMsg(allMessage)
             })        
-        }  
+        }
+
+        setSocket(socket)
 
         return () => {
-            socket.close()
+            socket.disconnect()
         }
-    })      
+    }, [data, token])    
 
     const handleSubmit = (e) => {
-        e.preventDefault()        
-        socket.emit('chat', msg, data.user_id, data.username)
-        setMsg('')
-    }
+        e.preventDefault();
+        if (socket && socket.connected) {
+            socket.emit('chat', msg, data.user_id, data.username);
+            setMsg('');
+        } else {
+            console.error('Socket is not connected');
+        }
+    };
+
 
     console.log(allMsg)
 
