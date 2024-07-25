@@ -43,8 +43,9 @@
 
 .main{
     width: 100%;
-    height: 80%;    
+    height: 80%;
     background-color: #ccc;
+    overflow-y: scroll;    
 }
 
 .footer{
@@ -86,4 +87,62 @@
     color: #fff;
     border-radius: 10px;
     cursor: pointer;  
+}
+
+.mesageContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;    
+    align-items: flex-start;
+}
+
+.messageContainerFrom{
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;    
+    align-items: flex-end;
+}
+
+.message{
+    max-width: fit-content;
+    display: flex;
+    /* float: right;     */
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 50px;
+    justify-content: center;
+    background-color: #1f1f1f;    
+    color: white;
+    margin: 10px 20px;
+    font-size: 14px;
+}
+
+.messageFrom{    
+    max-width: fit-content;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 50px;
+    justify-content: center;
+    background-color: #41B06E;    
+    color: white;
+    margin: 10px 20px;
+    font-size: 14px;
+}
+
+
+/* WebKit Scrollbar Styling */
+/* Track */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

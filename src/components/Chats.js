@@ -2,7 +2,7 @@ import Content from "./Content"
 import styles from '../style/Chats.module.css'
 import Icon from "./Icon"
 import { useEffect, useState } from "react"
-import { io } from "socket.io-client"
+// import { io } from "socket.io-client"
 
 const Chats = ({onData}) => {
     const [chatsData, setChatsData] = useState([])        

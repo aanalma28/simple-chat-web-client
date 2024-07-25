@@ -123,7 +123,21 @@ const Messages = ({data}) => {
                         </div>
                     </div>
                     <div className={styles.main} id="message-main">
-
+                        {allMsg ? allMsg.chats_data.map((index) => {
+                            if(index.from.user_id === data.user_id){
+                                return <div className={styles.messageContainer}>
+                                    <div className={styles.message}>
+                                        <p>{index.message}</p>
+                                    </div>
+                                </div>
+                            }else{
+                                return <div className={styles.messageContainerFrom}>
+                                    <div className={styles.messageFrom}>
+                                        <p>{index.message}</p>
+                                    </div>
+                                </div>
+                            }
+                        }) : ''}
                     </div>
                     <div className={styles.footer} id="message-footer">
                         <form className={styles.form} onSubmit={handleSubmit}>
