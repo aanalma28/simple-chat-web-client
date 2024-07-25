@@ -59,16 +59,24 @@ const Messages = ({data}) => {
             reconnectionAttempts: 5,
             reconnectionDelay: 1000,    
             timeout: 20000, // timeout 20 detik
-        })
+        })        
 
+        setSocket(socket)
+
+        return () => {
+            socket.disconnect()
+        }
+    }, [token])
+
+    if(socket){
         socket.on('connect', () => {
             console.log('Connected to server')
         })       
-
+    
         socket.on('disconnect', () => {
             console.log('Disconnect from server')
         })
-
+    
         socket.on('error', (err) => {
             console.error('Socket error: ', err)
         })
@@ -80,7 +88,7 @@ const Messages = ({data}) => {
         socket.on('messageError', (msg) => {
             console.error(msg);
         });
-
+    
         if(data && token){
             socket.emit('getAllChats', data.user_id)
     
@@ -88,13 +96,7 @@ const Messages = ({data}) => {
                 setAllMsg(allMessage)
             })        
         }
-
-        setSocket(socket)
-
-        return () => {
-            socket.disconnect()
-        }
-    }, [data, token])    
+    }    
 
     const handleSubmit = (e) => {
         e.preventDefault();
