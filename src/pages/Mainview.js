@@ -7,6 +7,7 @@ import Settings from '../components/Settings'
 import styles2 from '../style/Sidebar.module.css'
 import Profile from '../components/Profile'
 import { useState, useEffect } from 'react'
+import { io } from 'socket.io-client'
 
 
 const Mainview = () => {
@@ -36,7 +37,55 @@ const Mainview = () => {
         auth()
 
     }, [])
+
+    // Get token from specify user
+    const [token, setToken] = useState(null)
+    useEffect(() => {
+        // console.log(data.user_id)
+        const res = async() => {
+            const response = await fetch('http://localhost:3030/getToken', {
+                method: 'GET',
+                credentials: 'include',
+                headers: {'Content-Type': 'application/json'}
+            })
+
+            const json = await response.json()
+            console.log(json)
+            if(response.ok){
+                return json
+            }
+        }
+
+        res().then(json => {
+            const token = json.data
+            if(token){
+                setToken(token)
+            }else{
+                setToken(null)
+            }
+        })
+    }, [])
+
+    // Socket connection with server
+    const [socket, setSocket] = useState(null)
+    useEffect(() => {
+        const socket = io('http://localhost:3030', {
+            extraHeaders: {Cookies: `token=${token}`},
+            reconnection: true,
+            reconnectionAttempts: 5,
+            reconnectionDelay: 1000,    
+            timeout: 20000, // timeout 20 detik
+        })        
+
+        setSocket(socket)
+
+        return () => {
+            socket.disconnect()
+        }
+    }, [token])
     
+
+    // Styling darkmode
     useEffect(() => {        
         const chat = document.getElementById('chat')
         const setting = document.getElementById('setting')
@@ -326,8 +375,8 @@ const Mainview = () => {
                 {content === 'settings' ? <Settings></Settings>
                 : content === 'list' ? <List userData={handleData}></List>
                 : content === 'profile' ? <Profile user={profile}></Profile>
-                : <Chats onData={handleData}></Chats>}
-                <Messages data={dataFromChild}></Messages>
+                : <Chats onData={handleData} socket={socket}></Chats>}
+                <Messages data={dataFromChild} socket={socket}></Messages>
             </div>
         </div>
     )

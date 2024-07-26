@@ -1,9 +1,8 @@
 import styles from '../style/Messages.module.css'
 import Icon from './Icon'
-import { io } from 'socket.io-client'
 import { useEffect, useState } from 'react'
 
-const Messages = ({data}) => {
+const Messages = ({data, socket}) => {
     useEffect(() => {
         const containerNoMsg = document.getElementById('container-no-msg')
         const txt = document.getElementById('wrapper-no-msg')
@@ -21,54 +20,12 @@ const Messages = ({data}) => {
 
     })
 
-    const [token, setToken] = useState()
-    const [socket, setSocket] = useState(null)
+    // const [token, setToken] = useState()
+    // const [socket, setSocket] = useState(null)
     const [msg, setMsg] = useState()
-    const [allMsg, setAllMsg] = useState()
+    const [allMsg, setAllMsg] = useState()        
 
-    useEffect(() => {
-        // console.log(data.user_id)
-        const res = async() => {
-            const response = await fetch('http://localhost:3030/getToken', {
-                method: 'GET',
-                credentials: 'include',
-                headers: {'Content-Type': 'application/json'}
-            })
-
-            const json = await response.json()
-            console.log(json)
-            if(response.ok){
-                return json
-            }
-        }
-
-        res().then(json => {
-            const token = json.data
-            if(token){
-                setToken(token)
-            }else{
-                setToken(null)
-            }
-        })
-    }, [])
-
-    useEffect(() => {
-        const socket = io('http://localhost:3030', {
-            extraHeaders: {Cookies: `token=${token}`},
-            reconnection: true,
-            reconnectionAttempts: 5,
-            reconnectionDelay: 1000,    
-            timeout: 20000, // timeout 20 detik
-        })        
-
-        setSocket(socket)
-
-        return () => {
-            socket.disconnect()
-        }
-    }, [token])
-
-    if(socket){
+    if(socket != null){
         socket.on('connect', () => {
             console.log('Connected to server')
         })       
@@ -89,10 +46,10 @@ const Messages = ({data}) => {
             console.error(msg);
         });
     
-        if(data && token){
-            socket.emit('getAllChats', data.user_id)
+        if(data){
+            socket.emit('getAllMsg', data.user_id)
     
-            socket.on('getAllChats', (allMessage) => {
+            socket.on('getAllMsg', (allMessage) => {
                 setAllMsg(allMessage)
             })        
         }

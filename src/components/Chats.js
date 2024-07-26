@@ -4,7 +4,7 @@ import Icon from "./Icon"
 import { useEffect, useState } from "react"
 // import { io } from "socket.io-client"
 
-const Chats = ({onData}) => {
+const Chats = ({onData, socket}) => {
     const [chatsData, setChatsData] = useState([])        
 
     useEffect(() => {
@@ -44,12 +44,17 @@ const Chats = ({onData}) => {
         
     })
 
-    // const socket = io('http://localhost:3030')
+    if(socket !== null){
+        socket.on('getAllChats', (chats) => {
+            console.log(chats)
+        })
 
-    // socket.on('allmessage', (allMsg) => {
-    //     const chats = allMsg.chats_data
-    //     setChatsData(chats)
-    // })
+        socket.on('error', (err) => {
+            console.error('Socket error: ', err)
+        })
+    }
+
+    console.log(chatsData)
 
     return (
         <Content>
