@@ -202,7 +202,9 @@ const Contact = ({userData}) => {
                             </div>
                         ))
                     ) : (
-                        <p>No users found</p>
+                        <div className={styles.noUsersWrapper}>
+                            <p className={styles.noUsersTxt} id="text">No Users Found</p>
+                        </div>
                     )}                                                             
                 </div>
                 </>
