@@ -27,8 +27,10 @@ const Contact = () => {
         let number = parseInt(localStorage.getItem('number')) || 0
         const circle = document.getElementById('circle')
         const longCircle = document.getElementById('long-circle')
+
+        const messages = document.querySelectorAll('#msg')
         
-        if(number %2 === 0){
+        if(number %2 !== 0){
             chat.addEventListener('click', () => {
                 chat.style.backgroundColor = '#383838'                
                 setting.style.backgroundColor = '#1f1f1f'
@@ -55,8 +57,7 @@ const Contact = () => {
                 setting.style.backgroundColor = '#1f1f1f'
                 profile.style.backgroundColor = '#1f1f1f'
                 contact.style.backgroundColor = '#383838'
-            })
-
+            })            
             
         }else{
             chat.addEventListener('click', () => {
@@ -88,7 +89,7 @@ const Contact = () => {
                 profile.style.backgroundColor = '#f1f1f1'
                 contact.style.backgroundColor = '#ccc'                
                 
-            })            
+            })                        
         }
 
         circle.addEventListener('click', (e) => {            
@@ -128,6 +129,34 @@ const Contact = () => {
                     input.style.backgroundColor = '#3d3d3d'
                     input.style.border = '1px solid #3d3d3d'                    
                 })
+                
+                chat.addEventListener('click', () => {
+                    chat.style.backgroundColor = '#383838'                
+                    setting.style.backgroundColor = '#1f1f1f'
+                    profile.style.backgroundColor = '#1f1f1f'
+                    contact.style.backgroundColor = '#1f1f1f'
+                })
+    
+                setting.addEventListener('click', () => {
+                    chat.style.backgroundColor = '#1f1f1f'                
+                    setting.style.backgroundColor = '#383838'
+                    profile.style.backgroundColor = '#1f1f1f'
+                    contact.style.backgroundColor = '#1f1f1f'
+                })
+    
+                profile.addEventListener('click', () => {
+                    chat.style.backgroundColor = '#1f1f1f'                
+                    setting.style.backgroundColor = '#1f1f1f'
+                    profile.style.backgroundColor = '#383838'
+                    contact.style.backgroundColor = '#1f1f1f'
+                })
+    
+                contact.addEventListener('click', () => {
+                    chat.style.backgroundColor = '#1f1f1f'                
+                    setting.style.backgroundColor = '#1f1f1f'
+                    profile.style.backgroundColor = '#1f1f1f'
+                    contact.style.backgroundColor = '#383838'
+                })
 
                 if(chat.getAttribute('name') === 'clicked'){
                     chat.style.backgroundColor = '#383838'                
@@ -163,6 +192,13 @@ const Contact = () => {
                     contact.style.backgroundColor = '#383838'
                 }else{
                     contact.style.backgroundColor = '#1f1f1f'
+                }
+
+                if(messages != null){
+                    messages.forEach((msg) => {
+                        msg.style.backgroundColor = '#1f1f1f'
+                        msg.style.color = 'white'
+                    })
                 }
 
                 number+=1
@@ -201,6 +237,37 @@ const Contact = () => {
                     input.style.border = '2px solid white'                    
                 })
 
+                chat.addEventListener('click', () => {
+                    chat.style.backgroundColor = '#ccc'          
+                    setting.style.backgroundColor = '#f1f1f1'
+                    profile.style.backgroundColor = '#f1f1f1'
+                    contact.style.backgroundColor = '#f1f1f1'                                
+                })
+        
+                setting.addEventListener('click', () => {
+                    chat.style.backgroundColor = '#f1f1f1'
+                    setting.style.backgroundColor = '#ccc'                
+                    profile.style.backgroundColor = '#f1f1f1'
+                    contact.style.backgroundColor = '#f1f1f1'                     
+                    
+                })
+        
+                profile.addEventListener('click', () => {
+                    chat.style.backgroundColor = '#f1f1f1'
+                    setting.style.backgroundColor = '#f1f1f1'
+                    profile.style.backgroundColor = '#ccc'
+                    contact.style.backgroundColor = '#f1f1f1'                
+                    
+                })
+        
+                contact.addEventListener('click', () => {
+                    chat.style.backgroundColor = '#f1f1f1'
+                    setting.style.backgroundColor = '#f1f1f1'
+                    profile.style.backgroundColor = '#f1f1f1'
+                    contact.style.backgroundColor = '#ccc'                
+                    
+                })
+
                 if(chat.getAttribute( 'name' ) === 'clicked'){
                     chat.style.backgroundColor = '#ccc'               
                     setting.style.backgroundColor = '#f1f1f1'
@@ -235,6 +302,13 @@ const Contact = () => {
                     contact.style.backgroundColor = '#ccc'
                 }else{
                     contact.style.backgroundColor = '#f1f1f1'               
+                }
+
+                if(messages != null){
+                    messages.forEach((msg) => {
+                        msg.style.backgroundColor = '#f1f1f1'
+                        msg.style.color = 'black'
+                    })
                 }
                 
                 number+=1

@@ -128,7 +128,7 @@ const Messages = ({data}) => {
                         {allMsg ? allMsg.chats_data.map((index) => {
                             if(index.from.user_id === data.user_id){
                                 return <div className={styles.messageContainer}>
-                                    <div className={styles.message}>
+                                    <div className={styles.message} id="msg">
                                         <p>{index.message}</p>
                                     </div>
                                 </div>
@@ -139,7 +139,7 @@ const Messages = ({data}) => {
                                     </div>
                                 </div>
                             }
-                        }) : ''}
+                        }) : 'No Chats Found'}
                     </div>
                     <div className={styles.footer} id="message-footer">
                         <form className={styles.form} onSubmit={handleSubmit}>

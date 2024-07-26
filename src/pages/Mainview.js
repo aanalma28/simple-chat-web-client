@@ -55,7 +55,11 @@ const Mainview = () => {
         const msgHeader = document.getElementById('message-header')
         const msgMain = document.getElementById('message-main')
         const msgFooter = document.getElementById('message-footer')
-        
+
+        const messages = document.querySelectorAll('#msg')
+
+
+        // Style for MainContent and Message Page
         if(isDarkSidebar === 'enabled'){
             containerSidebar.style.backgroundColor = '#1f1f1f'                                      
             content.style.backgroundColor = '#141414'
@@ -99,7 +103,14 @@ const Mainview = () => {
                 msgHeader.style.backgroundColor = '#1f1f1f'
                 msgMain.style.backgroundColor ='#0c0c0c'
                 msgFooter.style.backgroundColor = '#1f1f1f'
-            }           
+            }
+
+            if(messages != null){
+                messages.forEach((msg) => {
+                    msg.style.backgroundColor = '#1f1f1f'
+                    msg.style.color = 'white'
+                })
+            }            
         }else{
             containerSidebar.style.backgroundColor = '#f1f1f1'                
             content.style.backgroundColor = 'white'
@@ -142,9 +153,19 @@ const Mainview = () => {
                 msgHeader.style.backgroundColor = '#f1f1f1'
                 msgMain.style.backgroundColor ='#ccc'
                 msgFooter.style.backgroundColor = '#f1f1f1'
-            }            
+            }
+
+            if(messages != null){
+                messages.forEach((msg) => {
+                    msg.style.backgroundColor = '#f1f1f1'
+                    msg.style.color = 'black'
+                })
+            }
+                        
         }
 
+
+        // Style for sidebar Icons
         chat.addEventListener('click', () => {            
             console.log(isDarkSidebar)                                
             if(isDarkSidebar === 'disabled'){                
