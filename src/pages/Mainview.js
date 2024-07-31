@@ -8,6 +8,7 @@ import styles2 from '../style/Sidebar.module.css'
 import Profile from '../components/Profile'
 import { useState, useEffect } from 'react'
 import { io } from 'socket.io-client'
+import { ChatsProvider } from '../context/ChatContext'
 
 
 const Mainview = () => {
@@ -375,7 +376,8 @@ const Mainview = () => {
                 {content === 'settings' ? <Settings></Settings>
                 : content === 'list' ? <List userData={handleData}></List>
                 : content === 'profile' ? <Profile user={profile}></Profile>
-                : <Chats onData={handleData} socket={socket}></Chats>}
+                // : content === 'chats' ? <Chats onData={handleData} socket={socket} user={profile}></Chats>
+                : <ChatsProvider><Chats onData={handleData} socket={socket} user={profile}></Chats></ChatsProvider>}
                 <Messages data={dataFromChild} socket={socket}></Messages>
             </div>
         </div>
