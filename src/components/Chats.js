@@ -1,12 +1,11 @@
 import Content from "./Content";
 import styles from '../style/Chats.module.css';
 import Icon from "./Icon";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useChats } from "../context/ChatContext";
 
 const Chats = ({ onData, socket, user }) => {
-    const { chatsData, setChatsData } = useChats();
-    const [haveChat, setHaveChat] = useState(false);
+    const { chatsData } = useChats()
 
     useEffect(() => {
         const isDark = localStorage.getItem('darkMode');
@@ -51,57 +50,7 @@ const Chats = ({ onData, socket, user }) => {
                 list.removeEventListener('mouseleave', () => {});
             });
         };
-    }, []);
-
-    useEffect(() => {
-        const storedChats = localStorage.getItem('chatsData');
-        if (storedChats) {
-            setChatsData(JSON.parse(storedChats));
-            setHaveChat(true);
-        }
-    }, [setChatsData]);
-
-    useEffect(() => {
-        if (socket !== null && user && user.user_id) {
-            socket.on('getAllChats', (chatsJson) => {
-                const chats = chatsJson.chats;
-                const newChatsData = [];
-                for (let i = chats.length - 1; i >= 0; i--) {
-                    if (chats[i].from.user_id === user.user_id) {
-                        const findUser = newChatsData.find(el => el.user_id === chats[i].to.user_id);
-                        if (!findUser) {
-                            newChatsData.push({
-                                user_id: chats[i].to.user_id,
-                                username: chats[i].to.username,
-                                message: chats[i].message,
-                            });
-                        }
-                    } else if (chats[i].to.user_id === user.user_id) {
-                        const findUser = newChatsData.find(el => el.user_id === chats[i].from.user_id);
-                        if (!findUser) {
-                            newChatsData.push({
-                                user_id: chats[i].from.user_id,
-                                username: chats[i].from.username,
-                                message: chats[i].message,
-                            });
-                        }
-                    }
-                }
-                setChatsData(newChatsData);
-                setHaveChat(newChatsData.length > 0);
-                localStorage.setItem('chatsData', JSON.stringify(newChatsData));
-            });
-
-            socket.on('error', (err) => {
-                console.error('Socket error: ', err);
-            });
-
-            return () => {
-                socket.off('getAllChats');
-                socket.off('error');
-            };
-        }
-    }, [socket, user, setChatsData]);
+    }, []);         
 
     return (
         <Content>
@@ -116,7 +65,7 @@ const Chats = ({ onData, socket, user }) => {
                 </div>
             </div>
             <div className={styles.mainContainer}>
-                {haveChat ? (
+                {chatsData.length > 0 ? (
                     chatsData.map((chat, index) => (
                         <div
                             key={index}
@@ -145,4 +94,4 @@ const Chats = ({ onData, socket, user }) => {
     );
 };
 
-export default Chats;
+export default Chats

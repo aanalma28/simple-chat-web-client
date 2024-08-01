@@ -216,8 +216,7 @@ const Mainview = () => {
 
 
         // Style for sidebar Icons
-        chat.addEventListener('click', () => {            
-            console.log(isDarkSidebar)                                
+        chat.addEventListener('click', () => {                                              
             if(isDarkSidebar === 'disabled'){                
                 chat.style.backgroundColor = '#ccc'          
                 setting.style.backgroundColor = '#f1f1f1'
@@ -350,37 +349,39 @@ const Mainview = () => {
         }
     }        
 
-    return (        
-        <div className={styles.container}>            
-            <div className={styles.wrapper}>
-                <div className={styles2.container} id="container-sidebar">
-                    <div className={styles2.wrapper}>
-                        <div className={styles2.topIcon}>
-                            <div className={styles2.iconT} id="chat" onClick={handleChat}>
-                                <Icon name='chat' size='23px'/>                
+    return (
+        <ChatsProvider>
+            <div className={styles.container}>            
+                <div className={styles.wrapper}>
+                    <div className={styles2.container} id="container-sidebar">
+                        <div className={styles2.wrapper}>
+                            <div className={styles2.topIcon}>
+                                <div className={styles2.iconT} id="chat" onClick={handleChat}>
+                                    <Icon name='chat' size='23px'/>                
+                                </div>
+                                <div className={styles2.iconT} id="contact" onClick={handleList}>
+                                    <Icon name='contact' size='23px'/>                
+                                </div>                            
                             </div>
-                            <div className={styles2.iconT} id="contact" onClick={handleList}>
-                                <Icon name='contact' size='23px'/>                
-                            </div>                            
+                            <div className={styles2.bottomIcon}>
+                                <div className={styles2.iconB} id="setting" onClick={handleSetting}>
+                                    <Icon name='setting' size='30px'/>
+                                </div>
+                                <div className={styles2.iconB} id="profile" onClick={handleProfile}>
+                                    <Icon name='profile' size='30px'/>
+                                </div>
+                            </div>                
                         </div>
-                        <div className={styles2.bottomIcon}>
-                            <div className={styles2.iconB} id="setting" onClick={handleSetting}>
-                                <Icon name='setting' size='30px'/>
-                            </div>
-                            <div className={styles2.iconB} id="profile" onClick={handleProfile}>
-                                <Icon name='profile' size='30px'/>
-                            </div>
-                        </div>                
                     </div>
+                    {content === 'settings' ? <Settings></Settings>
+                    : content === 'list' ? <List userData={handleData}></List>
+                    : content === 'profile' ? <Profile user={profile}></Profile>
+                    // : content === 'chats' ? <Chats onData={handleData} socket={socket} user={profile}></Chats>
+                    : <Chats onData={handleData} socket={socket} user={profile}></Chats>}
+                    <Messages data={dataFromChild} socket={socket}></Messages>
                 </div>
-                {content === 'settings' ? <Settings></Settings>
-                : content === 'list' ? <List userData={handleData}></List>
-                : content === 'profile' ? <Profile user={profile}></Profile>
-                // : content === 'chats' ? <Chats onData={handleData} socket={socket} user={profile}></Chats>
-                : <ChatsProvider><Chats onData={handleData} socket={socket} user={profile}></Chats></ChatsProvider>}
-                <Messages data={dataFromChild} socket={socket}></Messages>
             </div>
-        </div>
+        </ChatsProvider>        
     )
 }
 

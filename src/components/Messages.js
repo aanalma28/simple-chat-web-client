@@ -1,8 +1,10 @@
 import styles from '../style/Messages.module.css'
 import Icon from './Icon'
 import { useEffect, useState } from 'react'
+import { useChats } from '../context/ChatContext'
 
 const Messages = ({data, socket}) => {
+    const {setChatsData} = useChats()
     useEffect(() => {
         const containerNoMsg = document.getElementById('container-no-msg')
         const txt = document.getElementById('wrapper-no-msg')
@@ -50,8 +52,12 @@ const Messages = ({data, socket}) => {
             socket.emit('getAllMsg', data.user_id)
     
             socket.on('getAllMsg', (allMessage) => {
-                setAllMsg(allMessage)
-            })        
+                setAllMsg(allMessage)                
+            })
+
+            socket.on('getAllChats', (chats) => {
+                setChatsData(chats)
+            })
         }
     }    
 
@@ -63,10 +69,7 @@ const Messages = ({data, socket}) => {
         } else {
             console.error('Socket is not connected');
         }
-    };
-
-
-    console.log(allMsg)
+    };    
 
     if(data !== undefined){
         return (
